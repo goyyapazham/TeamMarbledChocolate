@@ -1,0 +1,3 @@
+Jonathan Buhler -- 1/8 1:12 - 3:56
+  Created database and table structure
+  Created login.html and auth.py and got logging-in working
