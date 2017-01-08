@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Create Account</title>
+  <link rel = "stylesheet" type = "text/css" href = "../static/css/bootstrap.css">
+</head>
+<main>
+  <div class="container-fluid">
+    <form>
+      Username:<br>
+      
+  </div>
+</main>
+</html>
