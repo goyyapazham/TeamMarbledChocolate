@@ -23,7 +23,7 @@ def login():
 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():
-    data = [request.form['username'], request.form['password'], request.form['gender']]
+    data = [request.form['username'], request.form['password']]
     data = auth.login(data)
     if data[1]:
         session['user'] = data[2]

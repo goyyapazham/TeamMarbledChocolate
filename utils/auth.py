@@ -3,21 +3,19 @@ import hashlib, sqlite3
 def hashPass(password):
     return hashlib.sha512(password).hexdigest()
 
-def register(user, password):
-    result = []
+def register(user, password, gender, bio, movie_keys, ac_keys):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
     if (userExists(user, c)):
-        result = ['User already exists.', False]
+        return ['User already exists.', False]
     elif not user.isalnum() or not password.isalnum():
-        result = ['Username and password may only consist of alphanumeric characters.', False]
+        return ['Username and password may only consist of alphanumeric characters.', False]
     else:
         p = hashPass(password)
         c.execute("INSERT INTO USERS VALUES ('%s', '%s')"%(user, p))
         bd.commit()
         bd.close()
-        result = ['Registration successful.', False]
-    return result
+        return ['Registration successful.', False]
 
 def login(data):
     bd = sqlite3.connect('data/bd.db')
