@@ -1,3 +1,8 @@
+Dhiraj Patel -- 1/7 22:00
+- Created inital files, and folder structure
+- started form for the home.html file.
+
+
 Jonathan Buhler -- 1/8 1:12 - 3:56
   Created database and table structure
   Created login.html and auth.py and got logging-in working
