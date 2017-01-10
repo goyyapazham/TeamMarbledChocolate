@@ -31,10 +31,27 @@ def authenticate():
     else:
         return render_template('login.html', message = data[0])
 
-@app.route('/create1/', methods = ['POST'])
+@app.route('/create1/')
 def create1():
     if isUser():
         return redirect(url_for('home'))
+    return render_template('create1')
+
+@app.route('/register/', methods = ['POST'])
+def register(number):
+    if isUser():
+        return redirect(url_for('home'))
+    if number == 1:
+        data = [request.form['username'], request.form['password'], request.form['gender']]
+        auth.register2(data)
+    elif number == 2:
+        data = [request.form['movie_keys']]
+        auth.register1(data)
+    else:
+        data = [request.form['ac_keys']]
+        auth.register3(data)
+
+
 
 @app.route('/logout/')
 def logout():
