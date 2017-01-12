@@ -64,6 +64,10 @@ def isUser():
         return False
     return True
 
+@app.route('/elytest/')
+def elytest():
+    return render_template('elytest.html');
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
