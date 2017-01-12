@@ -4,5 +4,9 @@ Dhiraj Patel -- 1/7 22:00
 
 
 Jonathan Buhler -- 1/8 1:12 - 3:56
-  Created database and table structure
-  Created login.html and auth.py and got logging-in working
+- Created database and table structure
+- Created login.html and auth.py and got logging-in working
+
+Nala Sharadjaya -- 1/11 committed at 19:39
+- Create tmdb.py, add basic functions
+- BUG: Unicode error (so far addressed with a try/except thingy but there needs to be a better solution)
