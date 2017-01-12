@@ -1,5 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 from utils import auth
+import json
+
 app = Flask(__name__)
 app.secret_key = 'pineapples'
 
@@ -74,8 +76,9 @@ def process():
     d+="ELYBEST"
     ret = []
     ret.append(d)
+    ret = {'results':ret}
     print ret
-    return ret
+    return json.dumps(ret);
 
 if __name__ == '__main__':
     app.debug = True

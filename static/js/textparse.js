@@ -8,7 +8,17 @@ var printChar = function(e){
 		type: 'POST',
 		data: input,
 		success: function (d){
-		console.log(d);
+		d=JSON.parse(d);
+		console.log(d['results']);
+		var i = 0;
+		var suggestion = document.getElementById("suggestions");
+		var newSuggestion;
+		while(i < d['results'].length){
+		    newSuggestion=document.createElement("li");
+		    newSuggestion.innerHTML=d['results'][i];
+		    suggestions.appendChild(newSuggestion);
+		    i+=1;
+		}
 	    }
 	});
 };
