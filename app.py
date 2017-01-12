@@ -6,20 +6,20 @@ app.secret_key = 'pineapples'
 @app.route('/')
 def root():
     if not isUser():
-        return redirect(url_for('login'))
+        return redirect(url_for('login', message = 'Please login to use Netflix & Chill'))
     return redirect(url_for('home'))
 
 @app.route('/home/')
 def home():
     if not isUser():
-        return redirect(url_for('login'))
+        return redirect(url_for('login', message = 'Please login to use Netflix & Chill'))
     return render_template('home.html', user = session['user'])
 
-@app.route('/login/')
-def login():
+@app.route('/login/<message>/')
+def login(message):
     if isUser():
         return redirect(url_for('home'))
-    return render_template('login.html')
+    return render_template('login.html', message = message)
 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():
@@ -29,35 +29,44 @@ def authenticate():
         session['user'] = data[2]
         return redirect(url_for('home'))
     else:
-        return render_template('login.html', message = data[0])
+        return redirect(url_for('login', message = data[0]))
 
-@app.route('/create1/')
-def create1():
+@app.route('/create1/<message>/')
+def create1(message):
     if isUser():
         return redirect(url_for('home'))
-    return render_template('create1')
+    return render_template('create1.html', message = message)
+
+@app.route('/create2/')
+def create2():
+    return render_template('login.html')
 
 @app.route('/register/', methods = ['POST'])
-def register(number):
+def register():
     if isUser():
         return redirect(url_for('home'))
-    if number == 1:
-        data = [request.form['username'], request.form['password'], request.form['gender']]
-        auth.register2(data)
-    elif number == 2:
+    number = request.form['number']
+    if int(number) == 1:
+        data = [request.form['username'], request.form['password'], request.form['uGender'], request.form['tGender']]
+        data = auth.register1(data)
+        if bool(data[1]):
+            return redirect(url_for('create2'))
+        else:
+            return redirect(url_for('create1', message = data[0]))
+    elif int(number) == 2:
         data = [request.form['movie_keys']]
-        auth.register1(data)
+        data = auth.register2(data)
+        return redirect(url_for('create3'))
     else:
         data = [request.form['ac_keys']]
-        auth.register3(data)
-
-
+        data = auth.register3(data)
+        return redirect(url_for('home'))
 
 @app.route('/logout/')
 def logout():
     if 'user' in session:
         session.pop('user')
-    return redirect(url_for('login'))
+    return redirect(url_for('login', message = 'Hope to see you soon!'))
 
 def isUser():
     if not ('user' in session):
