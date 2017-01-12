@@ -63,10 +63,19 @@ def isUser():
     if not ('user' in session):
         return False
     return True
-
+##ELY TESTING STUFF NOT THAT RELEVANT BUT SORTA RELEVANT
 @app.route('/elytest/')
 def elytest():
     return render_template('elytest.html');
+
+@app.route('/process/', methods = ['POST'])
+def process():
+    d=request.form['text']
+    d+="ELYBEST"
+    ret = []
+    ret.append(d)
+    print ret
+    return ret
 
 if __name__ == '__main__':
     app.debug = True
