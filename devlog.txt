@@ -2,11 +2,15 @@ Dhiraj Patel -- 1/7 22:00
 - Created inital files, and folder structure
 - started form for the home.html file.
 
-
-Jonathan Buhler -- 1/8 1:12 - 3:56
+Jonathan Buhler -- 1/8 1:12 to 3:56
 - Created database and table structure
 - Created login.html and auth.py and got logging-in working
 
 Nala Sharadjaya -- 1/11 committed at 19:39
 - Create tmdb.py, add basic functions
 - BUG: Unicode error (so far addressed with a try/except thingy but there needs to be a better solution)
+
+Jonathan Buhler -- 1/11 8:30 to 10:45
+- Bootlegged create1.html which now works
+- Got the first stage of registration running
+- Implemented basic foundations of other two stages
