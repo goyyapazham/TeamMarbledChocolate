@@ -1,7 +1,7 @@
 import json
 import urllib2
 
-f = open("../tmdb.txt", "r")
+f = open("tmdb.txt", "r")
 key = f.read().strip()
 f.close()
 
@@ -46,7 +46,7 @@ def titles(ids):
                 pass
             titles += [title]
     return titles
-
+'''
 #TEST THINGS
 #10 things i hate about you
 print get_suggestions("10")
@@ -58,3 +58,4 @@ print get_suggestions("love a")
 #good will hunting
 print get_suggestions("good")
 print get_suggestions("good will")
+'''

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect, session
-from utils import auth
+from utils import auth, tmdb
 import json
 
 app = Flask(__name__)
@@ -83,13 +83,7 @@ def elytest():
 def process():
     d=request.form['text']
     #PROCESS(d): (backend)
-    d+="ELYBEST"
-    ret = []
-    ret.append(d)
-    d+="1"
-    ret.append(d)
-    d+="2"
-    ret.append(d)
+    ret = tmdb.get_suggestions(d)
     #^^TO BE REPLACED BY PROCESS WHICH RETURNS LIST OF SUGGESTIONS
     ret = {'results':ret}
     print ret
