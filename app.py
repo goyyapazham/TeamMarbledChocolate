@@ -73,9 +73,15 @@ def elytest():
 @app.route('/process/', methods = ['POST'])
 def process():
     d=request.form['text']
+    #PROCESS(d): (backend)
     d+="ELYBEST"
     ret = []
     ret.append(d)
+    d+="1"
+    ret.append(d)
+    d+="2"
+    ret.append(d)
+    #^^TO BE REPLACED BY PROCESS WHICH RETURNS LIST OF SUGGESTIONS
     ret = {'results':ret}
     print ret
     return json.dumps(ret);

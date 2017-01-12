@@ -1,21 +1,28 @@
-//THis function triggers when a user types, and creates suggestions
+//This function triggers when a user types, and creates suggestions
 var printChar = function(e){
     var start = document.getElementById("field").value;
     var input = {'text' : start}
-    console.log(input);
     $.ajax({
-	    url: '/process/',
+	    url: '/process/',//Backend function returns list of suggestions
 		type: 'POST',
 		data: input,
 		success: function (d){
 		d=JSON.parse(d);
-		console.log(d['results']);
-		var i = 0;
-		var suggestion = document.getElementById("suggestions");
-		var newSuggestion;
+		var suggestions = document.getElementById("suggestions");
+		console.log(suggestions.length);
+		var i=0;
+		var currentSuggestion;
+		var oldsuggestions = document.getElementsByClassName("suggestion");
+		//Deletes old suggestions
+		while(oldsuggestions.length>0){
+		    currentSuggestion=oldsuggestions[0];
+		    currentSuggestion.remove();
+		}
+		//Creates new suggestions
 		while(i < d['results'].length){
 		    newSuggestion=document.createElement("li");
 		    newSuggestion.innerHTML=d['results'][i];
+		    newSuggestion.className='suggestion';
 		    suggestions.appendChild(newSuggestion);
 		    i+=1;
 		}
@@ -23,7 +30,5 @@ var printChar = function(e){
 	});
 };
 
-console.log("hello ely");
 var trigger = document.getElementById('field');
-console.log(trigger);
 trigger.addEventListener('keyup', printChar);
