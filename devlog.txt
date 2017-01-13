@@ -18,3 +18,8 @@ Jonathan Buhler -- 1/11 8:30 to 10:45
 Ely Sandine -- 1/11 20:30 to 23:30
 - textparse.js takes input from textbox when the user types. It sends this data to the app.py for backend. It then takes the list of suggestions and overwrites a new list
 - elytest.html and the route /elytest/ were created to test this without finishing login and creating accounts
+
+Dhiraj Patel -- 1/12 7:30 - 9:30 PM
+- worked on major css stuff with bootstrap for the create 1 html page, and also tried to mess around with some javascript ideas I found for the login/register page; but I ended up saving it for a later day.
+
+- The JavaScript was basically a different way to design our login page; however, I need to show other group members first. 
