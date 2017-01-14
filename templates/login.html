@@ -4,13 +4,23 @@
     <title>Login </title>
   </head>
   <body>
-    <h1 class="head"> Welcome to Netflix and Chill! </h1>
+    <!--Header is the same accross all versions of the page-->
+    <h1 class="head">
+      Welcome to Netflix and Chill! 
+      <br>
+      <button class = "headButton" id="registerbutton"> Register </button>
+      <button class = "headButton" id="loginbutton"> Login </button>
+    </h1>
+    <!--Form changes depending on what version-->
+    <!--Form data is stored in hidden input fields when data is removed-->
     <form class="form" id="f1">
-      <input class="textfield">
+      <input type = "text" class="textfield" name="name">
+      <input type = "number" class="numberfield" name="name">
       </input>
     </form>
-    <button class="next" id="b1"></button>
-    <script src="../static/js/textparse.js"></script>
-    <script src="../static/js/jquery-3.1.1.min.js"></script>
+    <!--Button changes depending on what step in the login process-->
+    <button class="next" id="b1">Next</button>
+    <script src="../../static/js/jquery-3.1.1.min.js"></script>
+    <script src="../../static/js/login.js"></script>
   </body>
 </html>

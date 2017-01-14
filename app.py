@@ -8,20 +8,20 @@ app.secret_key = 'pineapples'
 @app.route('/')
 def root():
     if not isUser():
-        return redirect(url_for('login', message = 'Please login to use Netflix & Chill'))
+        return redirect(url_for('login'))
     return redirect(url_for('home'))
 
 @app.route('/home/')
 def home():
     if not isUser():
-        return redirect(url_for('login', message = 'Please login to use Netflix & Chill'))
+        return redirect(url_for('login'))
     return render_template('home.html', user = session['user'])
 
-@app.route('/login/<message>/')
-def login(message):
+@app.route('/login/')
+def login():
     if isUser():
         return redirect(url_for('home'))
-    return render_template('login.html', message = message)
+    return render_template('login.html')
 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():
