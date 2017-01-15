@@ -19,14 +19,12 @@
     <h3 id="description">
       Enter your username and password.
     </h3>
-    <form class="form" id="f1" action = "/register/" method="POST">
-    
-        <input type = "text" class="textfield" name="user" value="Username" required><br><br>
+    <form class="form" id="f1" action = "/authenticate/" method="POST">    
+        <input type = "text" class="textfield" name="user" value="Username" required>
         <input type = "password" class="textfield" name="password" value="Password" required>
-
+	<button class="btn btn-info" id="b1" type="submit">Next</button>
     </form>
     <!--Button changes depending on what step in the login process--><br>
-      <center><button class="btn btn-info" id="b1">Next</button></center>
     <script src="../../static/js/jquery-3.1.1.min.js"></script>
     <script src="../../static/js/request.js"></script>
     <script src="../../static/js/login.js"></script>

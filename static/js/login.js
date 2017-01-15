@@ -109,15 +109,30 @@ var updateAC = function(tag, index){
 	    updateAC(tag, index+1);//WOOHOO RECURSION
 	}
     }
+};
+
+//reset form resets the entire form
+var resetForm = function(e){
+    var inputs = document.getElementsByTagName("input");
+    while(inputs.length>0){
+	inputs[0].remove();
+    }
+}
+
+var loginButton = function(e){
+    resetForm();
+    var form = document.getElementById("f1");
+    var button = document.getElementById("b1");
+    form.insertBefore(makeInput("text","user","Username"),button);
+    form.insertBefore(makeInput("password","password","Password"),button);
+    button.setAttribute("type","submit");
+    state="login"
 }
 
 //next triggers when the button at the bottom is clicked
 //it checks the state, and calls the function
 var next = function(e){
-    if(state=="login"){
-	state = "reg1";
-	loadRegister1();
-    }else if(state=="reg1"){
+    if(state=="reg1"){
 	state = "reg2";
 	loadRegister2();
     }else if(state=="reg2"){
@@ -130,5 +145,5 @@ var next = function(e){
 };
 
 //TRIGGERS
-var button = document.getElementById("b1");
-button.addEventListener("click", next);
+document.getElementById("b1").addEventListener("click", next);
+document.getElementById("loginbutton").addEventListener("click",loginButton);
