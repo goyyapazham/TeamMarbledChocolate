@@ -24,9 +24,11 @@ var makeInput = function(type, name, text){
     return ret;
 };
 
+//setDescription sets the value in the description heading
 var setDescription = function(text){
     document.getElementById("description").innerHTML=text;
-}
+};
+
 //loadRegister1 loads inputs for username, email, password, and repeat password
 var loadRegister1 = function(e){
     makeHidden();
@@ -47,8 +49,24 @@ var loadRegister2 = function(e){
     form.appendChild(makeInput("text","you","Your sexuality"));
     form.appendChild(makeInput("text","preference","Sexuality you want to date"));
     form.appendChild(makeInput("text","security","Ely Sandine"));
-}
+};
 
+//loadRegister3 loads input for your favorite movie, and adds autocomplete
+var loadRegister3 = function(e){
+    makeHidden();
+    var form = document.getElementById("f1");
+    setDescription("Enter your three favorite movies. Suggestions will appear below as you type");
+    var m;
+    for(var i = 0; i<3; i++){
+	m = makeInput("text","m"+i,"Movie"+i);
+	m.setAttribute("id","m"+i);
+	m.addEventListener('keyup', function(){printChar(this.getAttribute("id"));});
+	form.appendChild(m);
+    }
+    var suggestions = document.createElement("ol");
+    suggestions.setAttribute("id","suggestions");
+    form.appendChild(suggestions);
+}
 //next triggers when the button at the bottom is clicked
 //it checks the state, and calls the function
 var next = function(e){
@@ -58,6 +76,9 @@ var next = function(e){
     }else if(state=="reg1"){
 	state = "reg2";
 	loadRegister2();
+    }else if(state=="reg2"){
+	state = "reg3";
+	loadRegister3();
     }
 };
 
