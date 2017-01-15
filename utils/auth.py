@@ -6,17 +6,15 @@ def hashPass(password):
 def register1(data):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
-
     if (userExists(data[0], c)):
         return ['Username already exists, ya reprobate', False]
     elif not data[0].isalnum() or not data[1].isalnum():
         return ['Username and password may only consist of alphanumeric characters. Prick...', False]
     else:
-
         hash = hashPass(data[1])
         c.execute("INSERT INTO USERS VALUES ('%s', '%s', '%s', '%s', Null, Null, NUll, Null, Null)" %(data[0], hash, data[2], data[3]))
-        bd.commit()
         return [None, True]
+    bd.commit()
 
 def login(data):
     bd = sqlite3.connect('data/bd.db')

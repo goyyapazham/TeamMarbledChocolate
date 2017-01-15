@@ -8,20 +8,20 @@ app.secret_key = 'pineapples'
 @app.route('/')
 def root():
     if not isUser():
-        return redirect(url_for('login'))
+        return redirect(url_for('login', message = 'Please login to use Netflix and Chill'))
     return redirect(url_for('home'))
 
 @app.route('/home/')
 def home():
     if not isUser():
-        return redirect(url_for('login'))
+        return redirect(url_for('login', message = 'Please login to use Netflix and Chill'))
     return render_template('home.html', user = session['user'])
 
-@app.route('/login/')
-def login():
+@app.route('/login/<message>/')
+def login(message):
     if isUser():
         return redirect(url_for('home'))
-    return render_template('login.html')
+    return render_template('login.html', message = message)
 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():
@@ -74,21 +74,19 @@ def isUser():
     if not ('user' in session):
         return False
     return True
+##ELY TESTING STUFF NOT THAT RELEVANT BUT SORTA RELEVANT
+@app.route('/elytest/')
+def elytest():
+    return render_template('elytest.html');
 
-@app.route('/suggest/', methods = ['POST'])
+@app.route('/process/', methods = ['POST'])
 def process():
     d=request.form['text']
+    #PROCESS(d): (backend)
     ret = tmdb.get_suggestions(d)
+    #^^TO BE REPLACED BY PROCESS WHICH RETURNS LIST OF SUGGESTIONS
     ret = {'results':ret}
-    return json.dumps(ret)
-
-@app.route('/images/', methods = ['POST'])
-def images():
-    ret=["big", "small", "floor", "bulkhead", "slim", "fan", "window", "central", "ceilingfan"]
-    #makeImages() - randomizes the list. It then uses google images to find the image files
-    # and store them in img0.jpg, img1.jpg, .. , img8.jpg where the order is the order of the new randomized list
-    # it returns the randomized list
-    ret={'results':ret}
+    print ret
     return json.dumps(ret);
 
 if __name__ == '__main__':
