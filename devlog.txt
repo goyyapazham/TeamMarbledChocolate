@@ -21,5 +21,9 @@ Ely Sandine -- 1/11 20:30 to 23:30
 
 Dhiraj Patel -- 1/12 7:30 - 9:30 PM
 - worked on major css stuff with bootstrap for the create 1 html page, and also tried to mess around with some javascript ideas I found for the login/register page; but I ended up saving it for a later day.
-
 - The JavaScript was basically a different way to design our login page; however, I need to show other group members first. 
+
+Ely Sandine -- 1/14 18:00 to 23:24
+- login.html now uses javascript to rewrite the html form
+- added javascript for pages 1-3
+- incorporated textparse.js with login.js
