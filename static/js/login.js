@@ -36,10 +36,10 @@ var setDescription = function(text){
 var loadRegister1 = function(e){
     makeHidden();
     setDescription("Enter your username, email address, password, and reenter your password");
-    form.insertBefore(makeInput("text","user","Username"),button);
-    form.insertBefore(makeInput("text","email","Email"),button);
-    form.insertBefore(makeInput("password","p1","Password"),button);
-    form.insertBefore(makeInput("password","p2","Password"),button);
+    form.appendChild(makeInput("text","user","Username"));
+    form.appendChild(makeInput("text","email","Email"));
+    form.appendChild(makeInput("password","p1","Password"));
+    form.appendChild(makeInput("password","p2","Password"));
 };
 
 //loadRegister2 loads input for gender you are, gender you want to data,
@@ -47,9 +47,9 @@ var loadRegister1 = function(e){
 var loadRegister2 = function(e){
     makeHidden();
     setDescription("Enter your sexuality, and the sexuality of person you would like to date. Next answer the security question for retrieving you password: Who do you secretly have a crush on?");
-    form.insertBefore(makeInput("text","you","Your sexuality"),button);
-    form.insertBefore(makeInput("text","preference","Sexuality you want to date"),button);
-    form.insertBefore(makeInput("text","security","Ely Sandine"),button);
+    form.appendChild(makeInput("text","you","Your sexuality"));
+    form.appendChild(makeInput("text","preference","Sexuality you want to date"));
+    form.appendChild(makeInput("text","security","Ely Sandine"));
 };
 
 //loadRegister3 loads input for your favorite movie, and adds autocomplete
@@ -61,11 +61,11 @@ var loadRegister3 = function(e){
 	m = makeInput("text","m"+i,"Movie"+i);
 	m.setAttribute("id","m"+i);
 	m.addEventListener('keyup', function(){printChar(this.getAttribute("id"));});
-	form.insertBefore(m,button);
+	form.appendChild(m);
     }
     var suggestions = document.createElement("ol");
     suggestions.setAttribute("id","suggestions");
-    form.insertBefore(suggestions,button);
+    form.appendChild(suggestions);
 };
 
 //loadRegister4 loads images of air conditioners for you to choose
@@ -90,7 +90,7 @@ var loadImages = function(d){
 	image.setAttribute("src","../../static/images/img"+i+".jpg");
 	image.setAttribute("alt",d[i]);
 	image.addEventListener("click", function(e){updateAC(this.getAttribute("alt"),0);});
-	form.insertBefore(image,button);
+	form.appendChild(image);
     }
 };
 
@@ -118,8 +118,8 @@ var resetForm = function(e){
 var loginButton = function(e){
     resetForm();
     var button = document.getElementById("b1");
-    form.insertBefore(makeInput("text","user","Username"),button);
-    form.insertBefore(makeInput("password","password","Password"),button);
+    form.appendChild(makeInput("text","user","Username"));
+    form.appendChild(makeInput("password","password","Password"));
     button.setAttribute("type","submit");
     form.setAttribute("action","/authenticate/");
     state="login"
@@ -145,7 +145,7 @@ var next = function(e){
     }else if(state=="reg3"){
 	state="reg4"
 	loadRegister4();
-    }else if(state=="reg4"){
+    }else if(state=="reg4" || state=="login"){
 	form.submit();
     }
 };
