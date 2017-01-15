@@ -66,7 +66,13 @@ var loadRegister3 = function(e){
     var suggestions = document.createElement("ol");
     suggestions.setAttribute("id","suggestions");
     form.appendChild(suggestions);
-}
+};
+
+//loadRegister4 loads images of air conditioners for you to choose
+var loadRegister4 = function4(e){
+    makeHidden();
+    
+};
 //next triggers when the button at the bottom is clicked
 //it checks the state, and calls the function
 var next = function(e){
@@ -79,6 +85,9 @@ var next = function(e){
     }else if(state=="reg2"){
 	state = "reg3";
 	loadRegister3();
+    }else if(state=="reg3"){
+	state="reg4"
+	loadRegister4();
     }
 };
 
