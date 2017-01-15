@@ -14,8 +14,7 @@ def message(data):
     c = bd.cursor()
     if len(data[2]) == 0:
         return False
-    #c.execute("INSERT INTO '%s' VALUES ('%s', '%s')" %(getChat(data), data[0], data[2]))
-    c.execute("INSERT INTO 'knob-pickle' VALUES ('pickle', 'hey')")
+    c.execute("INSERT INTO '%s' VALUES ('%s', '%s')" %(getChat(data), data[0], data[2]))
     bd.commit()
     return True
 
@@ -32,16 +31,8 @@ def chatExists(data, c):
 def getMessages(data):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
-    messages = OrderedDict()
+    messages = []
     s = c.execute("SELECT * FROM '%s'" %(getChat(data)))
     for r in s:
-        messages [r[0]] = r[1]
+        messages.append((r[0], r[1]))
     return messages
-
-
-data = ['pickle', 'knob', 'hey']
-startChat(data)
-message(data)
-texts = getMessages(data)
-for i in texts:
-    print (texts[i])
