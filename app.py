@@ -80,6 +80,15 @@ def process():
     d=request.form['text']
     ret = tmdb.get_suggestions(d)
     ret = {'results':ret}
+    return json.dumps(ret)
+
+@app.route('/images/', methods = ['POST'])
+def images():
+    ret=["big", "small", "floor", "bulkhead", "slim", "fan", "window", "central", "ceilingfan"]
+    #makeImages() - randomizes the list. It then uses google images to find the image files
+    # and store them in img0.jpg, img1.jpg, .. , img8.jpg where the order is the order of the new randomized list
+    # it returns the randomized list
+    ret={'results':ret}
     return json.dumps(ret);
 
 if __name__ == '__main__':

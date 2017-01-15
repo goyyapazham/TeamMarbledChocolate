@@ -71,8 +71,43 @@ var loadRegister3 = function(e){
 //loadRegister4 loads images of air conditioners for you to choose
 var loadRegister4 = function(e){
     makeHidden();
-    
+    var suggestions = document.getElementsByTagName("ol")[0];
+    suggestions.remove();
+    getImages();    
 };
+
+//loadImages takes a list of image tags and then adds the images to the form with eventlisteners
+var loadImages = function(d){
+    var form = document.getElementById("f1");	
+    var hinput;
+    for(var i = 0; i<3; i++){
+	hinput=makeInput("hidden","i"+i, "NONE");
+	hinput.setAttribute("id","i"+i);
+	form.appendChild(hinput);
+    }
+    var image;
+    for(var i = 0; i<d.length; i++){
+	image = document.createElement("img");
+	image.setAttribute("src","../../static/images/img"+i+".jpg");
+	image.setAttribute("alt",d[i]);
+	image.addEventListener("click", function(e){updateAC(this.getAttribute("alt"),0);});
+	form.appendChild(image);
+    }
+};
+
+//updateAC takes a tag name then adds it to one of the preferences
+var updateAC = function(tag, index){
+    if(index<3){
+	var input = document.getElementById("i"+index);
+	console.log("i"+index);
+	if(input.getAttribute("value")=="NONE"){
+	    input.setAttribute("value",tag);
+	}else{
+	    updateAC(tag, index+1);//WOOHOO RECURSION
+	}
+    }
+}
+
 //next triggers when the button at the bottom is clicked
 //it checks the state, and calls the function
 var next = function(e){

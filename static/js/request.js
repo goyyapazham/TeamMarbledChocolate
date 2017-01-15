@@ -23,23 +23,41 @@ var printChar = function(id){
 		    newSuggestion.innerHTML=d['results'][i];
 		    newSuggestion.className='suggestion';
 		    newSuggestion.addEventListener("click",function(){
-			    var oldInput =document.getElementById(id);
-			    var name = oldInput.getAttribute("name");
-			    var type = oldInput.getAttribute("type");
-			    var newInput= document.createElement("input");
-			    newInput.setAttribute("type", type);
-			    newInput.setAttribute("name", name);
-			    newInput.setAttribute("required","required");
-			    newInput.setAttribute("class","field");
-			    newInput.setAttribute("value",this.innerHTML);
-			    newInput.setAttribute("id",id);
-			    newInput.addEventListener('keyup', function(){printChar(id);});
-			    var form = document.getElementById("f1");
-			    form.replaceChild(newInput,oldInput);
-			    return input;});
+			    replaceInput(id,this.innerHTML);});
 		    suggestions.appendChild(newSuggestion);
 		    i+=1;
 		}
 	    }
+	});
+};
+
+//replaceInput replaces input forms for movies
+//This is called when a name is pressed
+//This is necessary because simply replacing the value does not update
+//the displayed html
+var replaceInput = function(id, text){
+    var oldInput =document.getElementById(id);
+    var name = oldInput.getAttribute("name");
+    var type = oldInput.getAttribute("type");
+    var newInput= document.createElement("input");
+    newInput.setAttribute("type", type);
+    newInput.setAttribute("name", name);
+    newInput.setAttribute("required","required");
+    newInput.setAttribute("class","field");
+    newInput.setAttribute("value",text);
+    newInput.setAttribute("id",id);
+    newInput.addEventListener('keyup', function(){printChar(id);});
+    var form = document.getElementById("f1");
+    form.replaceChild(newInput,oldInput);
+};
+
+//getImages returns a list of the nine image tag names, in a randomly determined order
+//the order is determined by backend, and images are set using backend
+//Tags: "big", "small", "floor", "bulkhead", "slim", "fan", "window", "central", "ceilingfan"
+var getImages = function(e){
+    var imageList;
+    $.post("/images/",function(d){
+	    imageList = JSON.parse(d)['results'];
+	    loadImages(imageList);
 	});
 };
