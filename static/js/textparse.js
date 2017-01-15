@@ -4,9 +4,9 @@ var printChar = function(e){
     var input = {'text' : start}
     $.ajax({
 	    url: '/process/',//Backend function returns list of suggestions
-		type: 'POST',
-		data: input,
-		success: function (d){
+	    type: 'POST',
+	    data: input,
+	    success: function (d){
 		d=JSON.parse(d);
 		var suggestions = document.getElementById("suggestions");
 		console.log(suggestions.length);
