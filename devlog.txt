@@ -27,3 +27,10 @@ Ely Sandine -- 1/14 18:00 to 23:24
 - login.html now uses javascript to rewrite the html form
 - added javascript for pages 1-3
 - incorporated textparse.js with login.js
+
+Dhiraj patel -- 1/14  21:00 to 24:00 
+- worked on customizing the bootstrap.min.css file to fit to our CSS standards. 
+- soldified the color scheme of our website.
+- updated the classes for the html form, to conform to the bootstrap code (i.e: btn btn-info) , before I updated it Ely had just labeled them as random classes, so now these changes incorporate bootstrap with them.
+- styled each class of the login.html page individually, and just generally made it look nice.
+- Remaining: Still have to style the suggestions code that ely wrote (kind of ugly right now), and add <br> tags to the javascript files that ely wrote. 
