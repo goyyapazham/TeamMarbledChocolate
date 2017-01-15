@@ -1,6 +1,6 @@
 //This function triggers when a user types, and creates suggestions
-var printChar = function(e){
-    var start = document.getElementById("field").value;
+var printChar = function(id){
+    var start = document.getElementById(id).value;
     var input = {'text' : start}
     $.ajax({
 	    url: '/process/',//Backend function returns list of suggestions
@@ -9,7 +9,6 @@ var printChar = function(e){
 	    success: function (d){
 		d=JSON.parse(d);
 		var suggestions = document.getElementById("suggestions");
-		console.log(suggestions.length);
 		var i=0;
 		var currentSuggestion;
 		var oldsuggestions = document.getElementsByClassName("suggestion");
@@ -23,12 +22,13 @@ var printChar = function(e){
 		    newSuggestion=document.createElement("li");
 		    newSuggestion.innerHTML=d['results'][i];
 		    newSuggestion.className='suggestion';
+		    newSuggestion.addEventListener("click",function(){
+			    var input =document.getElementById(id);
+			    input.setAttribute("value",this.innerHTML);
+			    input.setAttribute("type","hidden");});
 		    suggestions.appendChild(newSuggestion);
 		    i+=1;
 		}
 	    }
 	});
 };
-
-var trigger = document.getElementById('field');
-trigger.addEventListener('keyup', printChar);
