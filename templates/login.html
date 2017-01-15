@@ -2,14 +2,17 @@
 <html>
   <head>
     <title>Login </title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
   </head>
   <body>
     <!--Header is the same accross all versions of the page-->
     <h1 class="head">
       Welcome to Netflix and Chill! 
-      <br>
-      <button class = "headButton" id="registerbutton"> Sign Up </button>
-      <button class = "headButton" id="loginbutton"> Login </button>
+      <br><br>
+      <button class = "btn btn-info" id="registerbutton"> Sign Up </button>
+      <button class = "btn btn-info" id="loginbutton"> Login </button>
     </h1>
     <!--Form changes depending on what version-->
     <!--Form data is stored in hidden input fields when data is removed-->
@@ -17,12 +20,13 @@
       Enter your username and password.
     </h3>
     <form class="form" id="f1">
-      <input type = "text" class="textfield" name="user" value="Username" required>
-      <input type = "password" class="textfield" name="password" value="Password" required>
-      </input>
+    
+        <input type = "text" class="textfield" name="user" value="Username" required><br><br>
+        <input type = "password" class="textfield" name="password" value="Password" required>
+
     </form>
-    <!--Button changes depending on what step in the login process-->
-    <button class="next" id="b1">Next</button>
+    <!--Button changes depending on what step in the login process--><br>
+      <center><button class="btn btn-info" id="b1">Next</button></center>
     <script src="../../static/js/jquery-3.1.1.min.js"></script>
     <script src="../../static/js/login.js"></script>
   </body>
