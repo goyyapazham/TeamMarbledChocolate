@@ -2,6 +2,9 @@
 
 //State checks which of the "pages" are being displayed
 var state = "login";
+//form and button elements are the core of all functions
+var form = document.getElementById("f1");
+var button = document.getElementById("b1");
 
 //makeHidden hides all of the forms. This is used when reloading the "page"
 //All loadRegister functions hide previous responses, and add to the form
@@ -32,46 +35,42 @@ var setDescription = function(text){
 //loadRegister1 loads inputs for username, email, password, and repeat password
 var loadRegister1 = function(e){
     makeHidden();
-    var form = document.getElementById("f1");
     setDescription("Enter your username, email address, password, and reenter your password");
-    form.appendChild(makeInput("text","user","Username"));
-    form.appendChild(makeInput("text","email","Email"));
-    form.appendChild(makeInput("password","p1","Password"));
-    form.appendChild(makeInput("password","p2","Password"));
+    form.insertBefore(makeInput("text","user","Username"),button);
+    form.insertBefore(makeInput("text","email","Email"),button);
+    form.insertBefore(makeInput("password","p1","Password"),button);
+    form.insertBefore(makeInput("password","p2","Password"),button);
 };
 
 //loadRegister2 loads input for gender you are, gender you want to data,
 //and security question
 var loadRegister2 = function(e){
     makeHidden();
-    var form = document.getElementById("f1");
     setDescription("Enter your sexuality, and the sexuality of person you would like to date. Next answer the security question for retrieving you password: Who do you secretly have a crush on?");
-    form.appendChild(makeInput("text","you","Your sexuality"));
-    form.appendChild(makeInput("text","preference","Sexuality you want to date"));
-    form.appendChild(makeInput("text","security","Ely Sandine"));
+    form.insertBefore(makeInput("text","you","Your sexuality"),button);
+    form.insertBefore(makeInput("text","preference","Sexuality you want to date"),button);
+    form.insertBefore(makeInput("text","security","Ely Sandine"),button);
 };
 
 //loadRegister3 loads input for your favorite movie, and adds autocomplete
 var loadRegister3 = function(e){
     makeHidden();
-    var form = document.getElementById("f1");
     setDescription("Enter your three favorite movies. Suggestions will appear below as you type");
     var m;
     for(var i = 0; i<3; i++){
 	m = makeInput("text","m"+i,"Movie"+i);
 	m.setAttribute("id","m"+i);
 	m.addEventListener('keyup', function(){printChar(this.getAttribute("id"));});
-	form.appendChild(m);
+	form.insertBefore(m,button);
     }
     var suggestions = document.createElement("ol");
     suggestions.setAttribute("id","suggestions");
-    form.appendChild(suggestions);
+    form.insertBefore(suggestions,button);
 };
 
 //loadRegister4 loads images of air conditioners for you to choose
 var loadRegister4 = function(e){
     makeHidden();
-    var form = document.getElementById("f1");
     var suggestions = document.getElementsByTagName("ol")[0];
     suggestions.remove();
     var hinput;//Hidden input fields store image preferences
@@ -81,20 +80,17 @@ var loadRegister4 = function(e){
 	form.appendChild(hinput);
     }
     getImages();
-    hinput=makeInput("submit","submit","submit");
-    form.appendChild(hinput);
 };
 
 //loadImages takes a list of image tags and then adds the images to the form with eventlisteners
 var loadImages = function(d){
-    var form = document.getElementById("f1");	
     var image;
     for(var i = 0; i<d.length; i++){
 	image = document.createElement("img");
 	image.setAttribute("src","../../static/images/img"+i+".jpg");
 	image.setAttribute("alt",d[i]);
 	image.addEventListener("click", function(e){updateAC(this.getAttribute("alt"),0);});
-	form.appendChild(image);
+	form.insertBefore(image,button);
     }
 };
 
@@ -121,13 +117,21 @@ var resetForm = function(e){
 
 var loginButton = function(e){
     resetForm();
-    var form = document.getElementById("f1");
     var button = document.getElementById("b1");
     form.insertBefore(makeInput("text","user","Username"),button);
     form.insertBefore(makeInput("password","password","Password"),button);
     button.setAttribute("type","submit");
+    form.setAttribute("action","/authenticate/");
     state="login"
-}
+};
+
+var regButton = function(e){
+    resetForm();
+    button.setAttribute("type","button");
+    form.setAttribute("action","/register/");
+    state="reg1"
+    loadRegister1();
+};
 
 //next triggers when the button at the bottom is clicked
 //it checks the state, and calls the function
@@ -141,9 +145,12 @@ var next = function(e){
     }else if(state=="reg3"){
 	state="reg4"
 	loadRegister4();
+    }else if(state=="reg4"){
+	form.submit();
     }
 };
 
 //TRIGGERS
-document.getElementById("b1").addEventListener("click", next);
+button.addEventListener("click", next);
 document.getElementById("loginbutton").addEventListener("click",loginButton);
+document.getElementById("registerbutton").addEventListener("click",regButton);
