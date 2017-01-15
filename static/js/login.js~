@@ -81,8 +81,8 @@ var loadRegister4 = function(e){
 	form.appendChild(hinput);
     }
     getImages();
-    hinput=makeInput("submit","submit","submit");
-    form.appendChild(hinput);
+    hinput = makeInput("submit","submit","submit");
+    hinput
 };
 
 //loadImages takes a list of image tags and then adds the images to the form with eventlisteners
