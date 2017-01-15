@@ -13,15 +13,15 @@
       <br><br><br>
       <button class = "btn btn-info" id="registerbutton"> Sign Up </button>
       <button class = "btn btn-info" id="loginbutton"> Login </button>
-    </h1>
+    </h1> 
     <!--Form changes depending on what version-->
     <!--Form data is stored in hidden input fields when data is removed--><br>
     <h3 id="description">
       Enter your username and password.
     </h3>
-    <form class="form" id="f1" action = "/authenticate/" method="POST">    
-        <input type = "text" class="textfield" name="user" value="Username" required>
-        <input type = "password" class="textfield" name="password" value="Password" required>
+    <form class="form" id="f1" action = "/authenticate/" method="POST">  
+    <input type = "text" class="textfield" name="user" placeholder="Username" required><br>
+    <input type = "password" class="textfield" name="password" placeholder="Password"  required>
     </form>
     <!--Button changes depending on what step in the login process--><br>
     <center><button class="btn btn-info" id="b1">Next</button></center>
