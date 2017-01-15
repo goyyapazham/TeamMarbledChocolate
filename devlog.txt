@@ -35,10 +35,11 @@ Dhiraj patel -- 1/14  21:00 to 23:00
 - styled each class of the login.html page individually, and just generally made it look nice.
 - Remaining: Still have to style the suggestions code that ely wrote (kind of ugly right now), and add <br> tags to the javascript files that ely wrote. 
 
-Ely Sandine -- 1/15 9:27 to 12:43
+Ely Sandine -- 1/15 9:27 to 2:43
 - made login.js fully functional
 - changed some names (ex. textparse.js to request.js)
 - used request.js to get image pictures
-- cycling through "pages" works now
-- messed up the register backend :)
-- next I need to bug fix and clean up
+- cycling through stages works now
+- the two buttons on the top work in changing the form
+- next buttons varies based on stage
+
