@@ -23,9 +23,20 @@ var printChar = function(id){
 		    newSuggestion.innerHTML=d['results'][i];
 		    newSuggestion.className='suggestion';
 		    newSuggestion.addEventListener("click",function(){
-			    var input =document.getElementById(id);
-			    input.setAttribute("value",this.innerHTML);
-			    input.setAttribute("type","hidden");});
+			    var oldInput =document.getElementById(id);
+			    var name = oldInput.getAttribute("name");
+			    var type = oldInput.getAttribute("type");
+			    var newInput= document.createElement("input");
+			    newInput.setAttribute("type", type);
+			    newInput.setAttribute("name", name);
+			    newInput.setAttribute("required","required");
+			    newInput.setAttribute("class","field");
+			    newInput.setAttribute("value",this.innerHTML);
+			    newInput.setAttribute("id",id);
+			    newInput.addEventListener('keyup', function(){printChar(id);});
+			    var form = document.getElementById("f1");
+			    form.replaceChild(newInput,oldInput);
+			    return input;});
 		    suggestions.appendChild(newSuggestion);
 		    i+=1;
 		}

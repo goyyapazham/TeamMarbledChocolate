@@ -69,7 +69,7 @@ var loadRegister3 = function(e){
 };
 
 //loadRegister4 loads images of air conditioners for you to choose
-var loadRegister4 = function4(e){
+var loadRegister4 = function(e){
     makeHidden();
     
 };
