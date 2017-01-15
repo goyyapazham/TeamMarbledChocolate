@@ -74,19 +74,12 @@ def isUser():
     if not ('user' in session):
         return False
     return True
-##ELY TESTING STUFF NOT THAT RELEVANT BUT SORTA RELEVANT
-@app.route('/elytest/')
-def elytest():
-    return render_template('elytest.html');
 
-@app.route('/process/', methods = ['POST'])
+@app.route('/suggest/', methods = ['POST'])
 def process():
     d=request.form['text']
-    #PROCESS(d): (backend)
     ret = tmdb.get_suggestions(d)
-    #^^TO BE REPLACED BY PROCESS WHICH RETURNS LIST OF SUGGESTIONS
     ret = {'results':ret}
-    print ret
     return json.dumps(ret);
 
 if __name__ == '__main__':
