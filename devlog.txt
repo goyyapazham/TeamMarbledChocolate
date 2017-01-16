@@ -48,5 +48,8 @@ Jonathan Buhler -- 1/15 12:00 to 4:56
 - Yet to implement frontend+app.py as not sure on how it'll work with js
 - Fixed up a couple errors in auth.py
 
-Dhiraj Patel -- 1/15 16:00 to 16:45 PM 
+Dhiraj Patel -- 1/15 16:00 to 16:45 PM and 1/16 00:15 AM to 2:19 AM 
 - Added / Edited some of the css for the register pages.
+- implemented grid system from bootstrap onto all the register pages
+- reformatted some of the buttons and inputs to conform to the grid system. 
+

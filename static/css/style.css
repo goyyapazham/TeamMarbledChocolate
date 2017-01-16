@@ -18,13 +18,14 @@ h1{
     
 }
 #registerbutton, #loginbutton{
-  width: 23.05%;
-  height: 50px;
+  width: 250px;
+  height: 60px;
   padding: 5px 10px;
+  display: inline-block;
 }
 #b1{
-  width: 23.05%;
-  height: 65px;
+  width: 500px;
+  height: 70px;
   font-size: 24px;
   align-content: center
 }
@@ -42,7 +43,7 @@ h3{
 .form {
   background: #D90D18; /*also option: A8AAA9 */
   padding: 40px;
-  max-width: 600px;
+  width: 500px;
   margin: 40px auto;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
