@@ -47,3 +47,6 @@ Jonathan Buhler -- 1/15 12:00 to 4:56
 - Created message.py and got the backend for messaging working
 - Yet to implement frontend+app.py as not sure on how it'll work with js
 - Fixed up a couple errors in auth.py
+
+Dhiraj Patel -- 1/15 16:00 to 16:45 PM 
+- Added / Edited some of the css for the register pages.
