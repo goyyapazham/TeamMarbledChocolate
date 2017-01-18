@@ -28,7 +28,6 @@ def authenticate():
     data = [request.form['user'], request.form['password']]
     data = auth.login(data)
     if bool(data[0]):
-        print ('hiii')
         session['user'] = data[1]
         return redirect(url_for('home'))
     else:
