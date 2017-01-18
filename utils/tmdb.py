@@ -8,6 +8,8 @@ f.close()
 def read_json(url):
     return json.loads(urllib2.urlopen(url).read())
 
+### GET SUGGESTIONS GIVEN QUERY
+# wrapper fxn to use in app.py
 def get_suggestions(query):
     #construct API request
     url = "http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s&page=1"%(key, query.replace(" ", "%20"))
@@ -20,6 +22,7 @@ def get_suggestions(query):
     except:
         return titles(get_ids(j))
 
+# helper fxn for get_suggestions
 def get_ids(j):
     #limit number of results to 4
     ids = []
@@ -30,11 +33,11 @@ def get_ids(j):
     else:
         return ids[:4]
 
+# helper fxn for get_suggestions
 def titles(ids):
     titles = []
     for id in ids:
-        url = "http://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(id, key)
-        j = read_json(url)
+        j = read_json("http://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(id, key))
         try:
             if j['status_code'] == 7:
                 return "Whoops! The API key didn't work."
@@ -47,7 +50,64 @@ def titles(ids):
             titles += [title]
     return titles
 
-#TEST THINGS
+### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
+def match(p1, p2):
+    sim1 = []
+    sim2 = []
+    gen1 = []
+    gen2 = []
+    for id in p1:
+        j = read_json("https://api.themoviedb.org/3/movie/%d/similar?api_key=%s&language=en-US&page=1"%(id, key))
+        try:
+            if j['status_code'] == 7:
+                return "Whoops! The API key didn't work."
+        except:
+            gen1 = add_no_dup(gen1, get_genres(id))
+            for res in j['results']:
+                newid = int(res['id'])
+                sim1 += [newid]
+    for id in p2:
+        j = read_json("https://api.themoviedb.org/3/movie/%d/similar?api_key=%s&language=en-US&page=1"%(id, key))
+        try:
+            if j['status_code'] == 7:
+                return "Whoops! The API key didn't work."
+        except:
+            gen2 = add_no_dup(gen2, get_genres(id))
+            for res in j['results']:
+                newid = int(res['id'])
+                sim2 += [newid]
+    return add_to_score(p1, p2, 5) + add_to_score(sim1, sim2, 2) + add_to_score(gen1, gen2, 1)
+
+#helper
+def add_to_score(L1, L2, x):
+    i = 0
+    for val in L1:
+        if val in L2:
+            i += x
+    return i
+
+#helper
+def get_genres(movieid):
+    j = read_json("https://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(movieid, key))
+    try:
+        if j['status_code'] == 7:
+            return "Whoops! The API key didn't work."
+    except:
+        ret = []
+        genres = j['genres']
+        for res in genres:
+            ret += [int(res['id'])]
+    return ret
+
+#helper
+def add_no_dup(existing, new):
+    for val in new:
+        if val not in existing:
+            existing += [val]
+    return existing
+
+'''
+#TEST get_suggestions
 #10 things i hate about you
 print get_suggestions("10")
 print get_suggestions("10 things")
@@ -58,3 +118,7 @@ print get_suggestions("love a")
 #good will hunting
 print get_suggestions("good")
 print get_suggestions("good will")
+'''
+
+#TEST match
+print match([4951, 508, 9603], [18785, 64688]) 
