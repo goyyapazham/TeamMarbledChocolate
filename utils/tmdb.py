@@ -1,7 +1,7 @@
 import json
 import urllib2
 
-f = open("../tmdb.txt", "r")
+f = open("tmdb.txt", "r")
 key = f.read().strip()
 f.close()
 
@@ -122,4 +122,4 @@ print get_suggestions("good will")
 '''
 
 #TEST match
-print match([4951, 508, 9603], [18785, 64688]) 
+#print match([4951, 508, 9603], [18785, 64688])
