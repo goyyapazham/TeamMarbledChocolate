@@ -1,0 +1,96 @@
+body{
+  background: #D1F4FF;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+.tab-group {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+.tab-group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.tab-group li a {
+  display: block;
+  text-decoration: none;
+  padding: 15px;
+  background: rgba(160, 179, 176, 0.25);
+  color: #a0b3b0;
+  font-size: 20px;
+  float: left;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+.tab-group li a:hover {
+  background: #179b77;
+  color: #ffffff;
+}
+.tab-group .active a {
+  background: #1ab188;
+  color: #ffffff;
+}
+
+.tab-content > div:last-child {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 50;
+  line-height: 50px;
+  color: #833334;
+}
+
+
+input, textarea {
+  font-size: 22px;
+  display: block;
+    
+  width:20%;
+  height:20%;
+  padding: 5px 10px;
+  border: 20px solid #A2D1D0;
+  color: #070707;
+  border-radius: 100px;
+
+}
+input:focus, textarea:focus {
+  outline: 0;
+  border-color: #833334;
+}
+
+button {
+  border-radius: 100px;
+  padding: 5px 10px;
+  width:400px;
+  height:50%;
+  background: #A2D1D0;
+
+}
+button:hover, button:focus {
+  background: #833334;
+}
+
+button-block {
+  display: block;
+}

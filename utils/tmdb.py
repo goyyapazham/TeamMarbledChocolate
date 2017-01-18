@@ -1,7 +1,7 @@
 import json
 import urllib2
 
-f = open("../tmdb.txt", "r")
+f = open("tmdb.txt", "r")
 key = f.read().strip()
 f.close()
 
@@ -49,6 +49,7 @@ def titles(ids):
                 pass
             titles += [title]
     return titles
+<<<<<<< HEAD
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
 def match(p1, p2):
@@ -108,6 +109,10 @@ def add_no_dup(existing, new):
 
 '''
 #TEST get_suggestions
+=======
+'''
+#TEST THINGS
+>>>>>>> f62fc64476972ec16f53dfd3108437e79a08b1b0
 #10 things i hate about you
 print get_suggestions("10")
 print get_suggestions("10 things")
@@ -119,6 +124,9 @@ print get_suggestions("love a")
 print get_suggestions("good")
 print get_suggestions("good will")
 '''
+<<<<<<< HEAD
 
 #TEST match
 print match([4951, 508, 9603], [18785, 64688]) 
+=======
+>>>>>>> f62fc64476972ec16f53dfd3108437e79a08b1b0
