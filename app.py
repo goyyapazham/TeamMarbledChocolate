@@ -25,50 +25,29 @@ def login():
 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():
-    data = [request.form['username'], request.form['password']]
+    data = [request.form['user'], request.form['password']]
     data = auth.login(data)
-    if data[1]:
-        session['user'] = data[2]
+    if bool(data[0]):
+        print ('hiii')
+        session['user'] = data[1]
         return redirect(url_for('home'))
     else:
-        return redirect(url_for('login', message = data[0]))
+        return redirect(url_for('login'))
 
-@app.route('/create1/<message>/')
-def create1(message):
+@app.route('/create/', methods = ['POST'])
+def create():
     if isUser():
         return redirect(url_for('home'))
-    return render_template('create1.html', message = message)
-
-@app.route('/create2/')
-def create2():
-    return render_template('login.html')
-
-@app.route('/register/', methods = ['POST'])
-def register():
-    if isUser():
-        return redirect(url_for('home'))
-    number = request.form['number']
-    if int(number) == 1:
-        data = [request.form['username'], request.form['password'], request.form['uGender'], request.form['tGender']]
-        data = auth.register1(data)
-        if bool(data[1]):
-            return redirect(url_for('create2'))
-        else:
-            return redirect(url_for('create1', message = data[0]))
-    elif int(number) == 2:
-        data = [request.form['movie_keys']]
-        data = auth.register2(data)
-        return redirect(url_for('create3'))
-    else:
-        data = [request.form['ac_keys']]
-        data = auth.register3(data)
-        return redirect(url_for('home'))
+    data = [request.form['user'], request.form['email'], request.form['p1'], request.form['p2'], request.form['you'], request.form['preference'], request.form['security'], request.form['m0'], request.form['m1'], request.form['m2'], request.form['i0'], request.form['i1']]
+    if auth.register(data):
+        return redirect(url_for('login'))
+    return redirect(url_for('login'))
 
 @app.route('/logout/')
 def logout():
     if 'user' in session:
         session.pop('user')
-    return redirect(url_for('login', message = 'Hope to see you soon!'))
+    return redirect(url_for('login'))
 
 def isUser():
     if not ('user' in session):

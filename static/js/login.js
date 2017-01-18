@@ -128,7 +128,7 @@ var loginButton = function(e){
 var regButton = function(e){
     resetForm();
     button.setAttribute("type","button");
-    form.setAttribute("action","/register/");
+    form.setAttribute("action","/create/");
     state="reg1"
     loadRegister1();
 };
