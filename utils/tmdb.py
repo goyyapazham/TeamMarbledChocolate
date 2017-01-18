@@ -1,7 +1,7 @@
 import json
 import urllib2
 
-f = open("tmdb.txt", "r")
+f = open("../tmdb.txt", "r")
 key = f.read().strip()
 f.close()
 
@@ -49,9 +49,9 @@ def titles(ids):
                 pass
             titles += [title]
     return titles
-<<<<<<< HEAD
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
+# wrapper fxn to be used in app.py
 def match(p1, p2):
     sim1 = []
     sim2 = []
@@ -79,7 +79,7 @@ def match(p1, p2):
                 sim2 += [newid]
     return add_to_score(p1, p2, 5) + add_to_score(sim1, sim2, 2) + add_to_score(gen1, gen2, 1)
 
-#helper
+#helper fxn for match
 def add_to_score(L1, L2, x):
     i = 0
     for val in L1:
@@ -87,7 +87,7 @@ def add_to_score(L1, L2, x):
             i += x
     return i
 
-#helper
+#helper fxn for match
 def get_genres(movieid):
     j = read_json("https://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(movieid, key))
     try:
@@ -100,7 +100,7 @@ def get_genres(movieid):
             ret += [int(res['id'])]
     return ret
 
-#helper
+#helper fxn for match
 def add_no_dup(existing, new):
     for val in new:
         if val not in existing:
@@ -109,10 +109,6 @@ def add_no_dup(existing, new):
 
 '''
 #TEST get_suggestions
-=======
-'''
-#TEST THINGS
->>>>>>> f62fc64476972ec16f53dfd3108437e79a08b1b0
 #10 things i hate about you
 print get_suggestions("10")
 print get_suggestions("10 things")
@@ -124,9 +120,6 @@ print get_suggestions("love a")
 print get_suggestions("good")
 print get_suggestions("good will")
 '''
-<<<<<<< HEAD
 
 #TEST match
 print match([4951, 508, 9603], [18785, 64688]) 
-=======
->>>>>>> f62fc64476972ec16f53dfd3108437e79a08b1b0
