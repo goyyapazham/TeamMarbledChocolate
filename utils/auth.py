@@ -14,7 +14,7 @@ def register(data):
         return False
     else:
         hash = hashPass(data[2])
-        c.execute("INSERT INTO USERS VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(data[0], data[1], hash, data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]))
+        c.execute("INSERT INTO USERS VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(data[0], data[1], hash, data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13]))
     bd.commit()
 
 def login(data):
@@ -23,7 +23,7 @@ def login(data):
     if not userExists(data[0], c):
         return [False]
     else:
-        s = c.execute("SELECT PASSWORD FROM USERS WHERE USERNAME = '%s'" %(data[0]))
+        s = c.execute("SELECT P1 FROM USERS WHERE USER = '%s'" %(data[0]))
         p = s.fetchone()[0]
         if (p != hashPass(data[1])):
             result = [False]
@@ -32,7 +32,7 @@ def login(data):
     return result
 
 def userExists(username, c):
-    s = c.execute("SELECT USERNAME FROM USERS")
+    s = c.execute("SELECT USER FROM USERS")
     for r in s:
         if username == r[0]:
             return True
