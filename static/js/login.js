@@ -16,7 +16,17 @@ var makeHidden = function(e){
     return 0;
 };
 
+//killImages deletes all the images. Neccesary because image files use a slightly
+// different way of submitting
 //This makes a generic input tag
+var killImages = function(e){
+    var images = document.getElementsByTagName("img");
+    while(images.length>0){
+	images[0].remove();
+    }
+    return 0;
+}
+
 var makeInput = function(type, name, text){
     var ret = document.createElement("input");
     ret.setAttribute("type", type);
@@ -24,6 +34,16 @@ var makeInput = function(type, name, text){
     ret.setAttribute("required","required");
     ret.setAttribute("class","field");
     ret.setAttribute("value",text);
+    return ret;
+};
+
+var makeInputImage = function(name){
+    var ret = document.createElement("input");
+    ret.setAttribute("type", "file");
+    ret.setAttribute("name", name);
+    ret.setAttribute("class","field");
+    ret.setAttribute("accept","image/*");
+    ret.setAttribute("id","pfp");
     return ret;
 };
 
@@ -115,8 +135,20 @@ var resetForm = function(e){
     }
 }
 
+//loadRegister5 loads inputs for image, bio
+var loadRegister5 = function(e){
+    killImages();
+    makeHidden();
+    setDescription("Lastly, enter your bio, and then upload a profile picture");
+    form.appendChild(makeInput("text","bio","Bio"));
+    form.appendChild(makeInputImage("pfp"));
+};
+
+
+
 var loginButton = function(e){
     resetForm();
+    killImages();
     var button = document.getElementById("b1");
     form.appendChild(makeInput("text","user","Username"));
     form.appendChild(makeInput("password","password","Password"));
@@ -145,7 +177,10 @@ var next = function(e){
     }else if(state=="reg3"){
 	state="reg4"
 	loadRegister4();
-    }else if(state=="reg4" || state=="login"){
+    }else if(state=="reg4"){
+	state="reg5"
+	loadRegister5();
+    }else if(state=="reg5" || state=="login"){
 	form.submit();
     }
 };
