@@ -53,6 +53,8 @@ Dhiraj Patel -- 1/15 16:00 to 16:45 PM and 1/16 00:15 AM to 2:19 AM
 - implemented grid system from bootstrap onto all the register pages
 - reformatted some of the buttons and inputs to conform to the grid system.
 
+Ely Sandine -- 1/16 18:15 to 18:16
+- did some debugging
 Jonathan Buhler -- 1/17 8:30 to 9:53
 - Linked frontend and backend of login and register
 - Still some bugs to wrinkle out
@@ -62,3 +64,6 @@ Nala Sharadjaya -- 1/17 10:00ish to 10:52
 - Examines favorite movies, similar movies and linked genres to identify how compatible 2 users are
 - Still requires linkage with frontend
 - Still requires to be expaned to include AC preference-matching
+
+Ely Sandine -- 1/18 21:00 to 22:30
+- Added input fields for profile picture and bio
