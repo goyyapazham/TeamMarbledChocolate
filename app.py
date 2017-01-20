@@ -37,7 +37,7 @@ def authenticate():
 def create():
     if isUser():
         return redirect(url_for('home'))
-    data = [request.form['user'], request.form['email'], request.form['p1'], request.form['p2'], request.form['you'], request.form['preference'], request.form['security'], request.form['m0'], request.form['m1'], request.form['m2'], request.form['i0'], request.form['i1'], request.form['i2'], request.form['bio']]
+    data = [request.form['user'], request.form['email'], request.form['p1'], request.form['p2'], request.form['gender'], request.form['pref'], request.form['security'], request.form['m0'], request.form['m1'], request.form['m2'], request.form['i0'], request.form['i1'], request.form['i2'], request.form['bio']]
     if auth.register(data):
         return redirect(url_for('login'))
     return redirect(url_for('login'))

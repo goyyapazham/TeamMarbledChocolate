@@ -66,12 +66,12 @@ var loadRegister1 = function(e){
 //and security question
 var loadRegister2 = function(e){
     makeHidden();
-    setDescription("Enter your sexuality, and the sexuality of person you would like to date. Next answer the security question for retrieving you password: Who do you secretly have a crush on?");
+    setDescription("Enter your gender identity, and the gender(s) you're interested in being matched with. Next answer the security question for retrieving you password: Who do you secretly have a crush on?");
     //YO IF U DO FRONTEND CHECK THIS OUT
     //HI ELY
     //CAN U MAKE THIS A DROPDOWN (i.e., male, female, other: please specify) so that matching users up is easier?
-    form.appendChild(makeInput("text","you","Your gender"));
-    form.appendChild(makeInput("text","preference","Gender(s) you're looking for"));
+    form.appendChild(makeInput("text","gender","Your gender"));
+    form.appendChild(makeInput("text","pref","Gender(s) you're looking for"));
     form.appendChild(makeInput("text","security","Ely Sandine"));
 };
 

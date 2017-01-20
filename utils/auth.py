@@ -1,4 +1,5 @@
 import hashlib, sqlite3
+import tmdb
 
 def hashPass(password):
     return hashlib.sha512(password).hexdigest()
@@ -14,8 +15,19 @@ def register(data):
         return False
     else:
         hash = hashPass(data[2])
-        c.execute("INSERT INTO USERS VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(data[0], data[1], hash, data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13]))
+        #0=user
+        #1=email
+        #2,3=pw
+        #4=gender
+        #5=pref
+        #6=security
+        #7,8,9=movs
+        #10,11,12=images (will implement later)
+        #13=bio
+        mov = [ data[7], data[8], data[9] ]
+        c.execute("INSERT INTO users VALUES(%s, %s, %s, %s, %s, %s, %d, %d, %d, %d, %s)"%(data[0], data[1], data[2], data[4], data[5], data[6], data[7], data[8], data[9], imdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
     bd.commit()
+    bd.close()
 
 def login(data):
     bd = sqlite3.connect('data/bd.db')
@@ -29,6 +41,8 @@ def login(data):
             result = [False]
         else:
             result = [True, data[0]]
+    bd.commit()
+    bd.close()
     return result
 
 def userExists(username, c):
