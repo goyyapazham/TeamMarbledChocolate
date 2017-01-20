@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html style="background-color:#FFA07A">
-<head><title>Home</title></head>
-<p> HOME SWEET HOME </p>
-<p> WELCOME {{ user }}, YA FILTHY ANIMAL </p>
-<form action = "/logout/">
-  <input type = "submit" name = "action" value = "Logout">
-</form>
-</body>
+<html>
+  <head>
+    <title>Home </title>
+    <link rel="shortcut icon" href="../static/images/icon.ico" />
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+  </head>
+  <body>
+    <!--Header for homepage is simple-->
+<div class="container-fluid">
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+    <h1 class="head">Welcome {{user}} </h1>
+    </div>
+</div>
+      <br><br>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3 text-center">
+    <button class = "btn btn-info" id="matchbutton"> New Match!</button>
+    <button class = "btn btn-info" id="logoutbutton"> Logout </button>
+    </div>
+</div>
+
+    <!--Lists of matches-->
+    <!--Each match has name, pfp, last message, message button--><br>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3 text-center">
+    <h3 id="description">
+      Your "friends ;)"
+    </h3>
+    </div>
+</div>
+</div>
+<body>
+
+  </body>
 </html>
+
