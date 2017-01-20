@@ -10,7 +10,7 @@ def read_json(url):
 
 ### GET SUGGESTIONS GIVEN QUERY
 # wrapper fxn to use in app.py
-def get_suggestions(query):
+def get_suggestions(ids):
     #construct API request
     url = "http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s&page=1"%(key, query.replace(" ", "%20"))
     j = read_json(url)
@@ -20,7 +20,7 @@ def get_suggestions(query):
         if j['status_code'] == 7:
             return "Whoops! The API key didn't work."
     except:
-        return titles(get_ids(j))
+        return titles(ids)
 
 # helper fxn for get_suggestions
 def get_ids(j):
