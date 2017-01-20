@@ -21,9 +21,12 @@ var printChar = function(id){
 		while(i < d['results'].length){
 		    newSuggestion=document.createElement("li");
 		    newSuggestion.innerHTML=d['results'][i];
-		    newSuggestion.className='suggestion';
+		    
+		    //newSuggestion.className='suggestion';
+		    newSuggestion.setAttribute("class","list-group-item list-group-item-info");
+		    console.log("hello");
 		    newSuggestion.addEventListener("click",function(){
-			    replaceInput(id,this.innerHTML);});
+			replaceInput(id,this.innerHTML);});
 		    suggestions.appendChild(newSuggestion);
 		    i+=1;
 		}

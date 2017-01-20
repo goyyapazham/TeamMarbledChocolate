@@ -29,6 +29,13 @@ h1{
   font-size: 24px;
   align-content: center
 }
+.list-group-item list-group-item-info{
+    position: relative;
+    font: bold 45px/1.5 Helvetica, Verdana, sans-serif;
+    margin-bottom: 20px;
+    color: black;
+}
+
 h3{
   
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
