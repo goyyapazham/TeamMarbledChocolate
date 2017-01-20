@@ -67,3 +67,6 @@ Nala Sharadjaya -- 1/17 10:00ish to 10:52
 
 Ely Sandine -- 1/18 21:00 to 22:30
 - Added input fields for profile picture and bio
+
+Ely Sandine -- 1/20 00:30 to 00:46
+- Began home.html
