@@ -24,8 +24,8 @@ def register(data):
         #7,8,9=movs
         #10,11,12=images (will implement later)
         #13=bio
-        mov = [ data[7], data[8], data[9] ]
-        c.execute("INSERT INTO users VALUES(%s, %s, %s, %s, %s, %s, %d, %d, %d, %d, %s)"%(data[0], data[1], data[2], data[4], data[5], data[6], data[7], data[8], data[9], imdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
+        mov = [ int(data[7]), int(data[8]), int(data[9]) ]
+        c.execute("INSERT INTO users VALUES(%s, %s, %s, %s, %s, %s, %d, %d, %d, %d, %s)"%(data[0], data[1], data[2], data[4], data[5], data[6], int(data[7]), int(data[8]), int(data[9]), tmdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
     bd.commit()
     bd.close()
 

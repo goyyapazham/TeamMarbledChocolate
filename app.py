@@ -56,7 +56,9 @@ def isUser():
 @app.route('/suggest/', methods = ['POST'])
 def process():
     d=request.form['text']
-    ret = tmdb.get_suggestions(d)
+    #send ids thru form
+    ids = tmdb.get_ids(d)
+    ret = tmdb.get_suggestions(ids)
     ret = {'results':ret}
     return json.dumps(ret)
 
