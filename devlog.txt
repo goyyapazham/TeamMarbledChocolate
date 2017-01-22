@@ -70,3 +70,9 @@ Ely Sandine -- 1/18 21:00 to 22:30
 
 Ely Sandine -- 1/20 00:30 to 00:46
 - Began home.html
+
+Ely Sandine -- 1/222 10:00 to 11:34
+- Undid Nala's code that broke everything
+- Changed login so that is passes movie ids instead of titles into the form
+- This was done by creating additional inputs, and modifying tmdb.py
+- Modified app.py to take the new input
