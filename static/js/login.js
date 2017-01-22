@@ -70,6 +70,7 @@ var loadRegister2 = function(e){
     //YO IF U DO FRONTEND CHECK THIS OUT
     //HI ELY
     //CAN U MAKE THIS A DROPDOWN (i.e., male, female, other: please specify) so that matching users up is easier?
+    //OK I'LL TRY
     form.appendChild(makeInput("text","gender","Your gender"));
     form.appendChild(makeInput("text","pref","Gender(s) you're looking for"));
     form.appendChild(makeInput("text","security","Ely Sandine"));
@@ -82,8 +83,10 @@ var loadRegister3 = function(e){
     var m;
     for(var i = 0; i<3; i++){
 	m = makeInput("text","m"+i,"Movie"+i);
+	m.addEventListener('keyup', function(){printChar(this.getAttribute("name"));});
+	form.appendChild(m);
+	m = makeInput("hidden","movie"+i, "NONE");
 	m.setAttribute("id","m"+i);
-	m.addEventListener('keyup', function(){printChar(this.getAttribute("id"));});
 	form.appendChild(m);
     }
     var suggestions = document.createElement("ol");
