@@ -18,15 +18,18 @@ var printChar = function(id){
 		    currentSuggestion.remove();
 		}
 		//Creates new suggestions
-		while(i < d['results'].length){
+		var keys = Object.keys(d['results']);
+		console.log(keys);
+		while(i < keys.length){
 		    newSuggestion=document.createElement("li");
-		    newSuggestion.innerHTML=d['results'][i];
-		    
+		    newSuggestion.innerHTML=d['results'][keys[i]];
 		    //newSuggestion.className='suggestion';
 		    newSuggestion.setAttribute("class","list-group-item list-group-item-info");
-		    console.log("hello");
+		    //id stores the id of the movie
+		    newSuggestion.setAttribute("id", keys[i]);
 		    newSuggestion.addEventListener("click",function(){
-			replaceInput(id,this.innerHTML);});
+			    console.log(id, this.getAttribute("id"));
+			    replaceInput(id, this.getAttribute("id"))});
 		    suggestions.appendChild(newSuggestion);
 		    i+=1;
 		}
