@@ -1,5 +1,8 @@
 import hashlib, sqlite3, shutil
 import tmdb
+import os
+import commands
+import cgi, cgitb
 
 def hashPass(password):
     return hashlib.sha512(password).hexdigest()
@@ -25,7 +28,7 @@ def register(data):
         #10,11,12=images (will implement later)
         #13=bio
         mov = [ int(data[7]), int(data[8]), int(data[9]) ]
-        c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%s')"%(data[0], data[1], data[2], data[4], data[5], data[6], int(data[7]), int(data[8]), int(data[9]), tmdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
+        c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%s')"%(data[0], data[1], hash, data[4], data[5], data[6], int(data[7]), int(data[8]), int(data[9]), tmdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
 
     bd.commit()
     bd.close()
@@ -36,15 +39,17 @@ def login(data):
     if not userExists(data[0], c):
         return [False]
     else:
-        s = c.execute("SELECT P1 FROM USERS WHERE USER = '%s'" %(data[0]))
+        s = c.execute("SELECT pass FROM USERS WHERE user = '%s'" %(data[0]))
+        print s
         p = s.fetchone()[0]
+        print p
         if (p != hashPass(data[1])):
             result = [False]
         else:
             result = [True, data[0]]
     bd.commit()
     bd.close()
-    shutil.move('%s.jpg', 'data') %(data[0])
+    #shutil.move('%s.jpg', 'data') %(data[0])
     return result
 
 def userExists(username, c):
@@ -53,3 +58,14 @@ def userExists(username, c):
         if username == r[0]:
             return True
     return False
+
+def profile(user):
+        cgitb.enable()
+        blah = cgi.FieldStorage()
+        try:
+            filedata = blah['upload']
+        except Exception, e:
+            return
+        if filedata.file:
+            with file('%s.jpg', 'w') %(request.form['user']) as outfile:
+                outfile.write(filedata.file.read())
