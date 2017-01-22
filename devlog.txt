@@ -77,3 +77,7 @@ Ely Sandine -- 1/222 10:00 to 11:51
 - This was done by creating additional inputs, and modifying tmdb.py
 - Modified app.py to take the new input
 - fixed dhiraj's error that led to suggestions not disappearing
+
+Jonathan Buhler -- 1/22 11:00 to 12:00
+- Edited app.py and auth.py to handle image uploading
+- Front-end still needs form update
