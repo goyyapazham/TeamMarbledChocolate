@@ -11,7 +11,7 @@ var printChar = function(id){
 		var suggestions = document.getElementById("suggestions");
 		var i=0;
 		var currentSuggestion;
-		var oldsuggestions = document.getElementsByClassName("suggestion");
+		var oldsuggestions = document.getElementsByTagName("li");
 		//Deletes old suggestions
 		while(oldsuggestions.length>0){
 		    currentSuggestion=oldsuggestions[0];
