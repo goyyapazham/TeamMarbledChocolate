@@ -19,7 +19,6 @@ var printChar = function(id){
 		}
 		//Creates new suggestions
 		var keys = Object.keys(d['results']);
-		console.log(keys);
 		while(i < keys.length){
 		    newSuggestion=document.createElement("li");
 		    newSuggestion.innerHTML=d['results'][keys[i]];

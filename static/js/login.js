@@ -124,7 +124,6 @@ var loadImages = function(d){
 var updateAC = function(tag, index){
     if(index<3){
 	var input = document.getElementById("i"+index);
-	console.log("i"+index);
 	if(input.getAttribute("value")=="NONE"){
 	    input.setAttribute("value",tag);
 	}else{
