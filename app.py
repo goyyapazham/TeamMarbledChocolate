@@ -57,8 +57,9 @@ def isUser():
 def process():
     d=request.form['text']
     #send ids thru form
-    ids = tmdb.get_ids(d)
-    ret = tmdb.get_suggestions(ids)
+    ret = tmdb.get_suggestions(d)
+    #ids = tmdb.get_ids(d)
+    #ret = tmdb.get_suggestions(ids)
     ret = {'results':ret}
     return json.dumps(ret)
 

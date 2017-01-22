@@ -10,7 +10,8 @@ def read_json(url):
 
 ### GET SUGGESTIONS GIVEN QUERY
 # wrapper fxn to use in app.py
-def get_suggestions(ids):
+def get_suggestions(query):
+#def get_suggestions(ids): - removed to debug
     #construct API request
     url = "http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s&page=1"%(key, query.replace(" ", "%20"))
     j = read_json(url)
@@ -20,7 +21,8 @@ def get_suggestions(ids):
         if j['status_code'] == 7:
             return "Whoops! The API key didn't work."
     except:
-        return titles(ids)
+        return titles(get_ids(j))
+        #return titles(ids)
 
 # helper fxn for get_suggestions
 def get_ids(j):
@@ -35,7 +37,7 @@ def get_ids(j):
 
 # helper fxn for get_suggestions
 def titles(ids):
-    titles = []
+    titles = {}
     for id in ids:
         j = read_json("http://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(id, key))
         try:
@@ -47,7 +49,7 @@ def titles(ids):
                 title = str(title)
             except:
                 pass
-            titles += [title]
+            titles[id]=title
     return titles
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
