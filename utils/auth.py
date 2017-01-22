@@ -1,4 +1,4 @@
-import hashlib, sqlite3
+import hashlib, sqlite3, shutil
 import tmdb
 
 def hashPass(password):
@@ -25,7 +25,8 @@ def register(data):
         #10,11,12=images (will implement later)
         #13=bio
         mov = [ int(data[7]), int(data[8]), int(data[9]) ]
-        c.execute("INSERT INTO users VALUES(%s, %s, %s, %s, %s, %s, %d, %d, %d, %d, %s)"%(data[0], data[1], data[2], data[4], data[5], data[6], int(data[7]), int(data[8]), int(data[9]), tmdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
+        c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%s')"%(data[0], data[1], data[2], data[4], data[5], data[6], int(data[7]), int(data[8]), int(data[9]), tmdb.match(mov, mov), data[13])) #WILL INCLUDE OTHER THINGS LATER
+
     bd.commit()
     bd.close()
 
@@ -43,6 +44,7 @@ def login(data):
             result = [True, data[0]]
     bd.commit()
     bd.close()
+    shutil.move('%s.jpg', 'data') %(data[0])
     return result
 
 def userExists(username, c):
