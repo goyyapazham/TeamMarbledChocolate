@@ -4,4 +4,8 @@
 * link up matching to frontend (nala)
 * AC matching (nala)
 * meet the coders page (nala)
+* AC Source Images (ely)
+* CSS airconditioners (DHIRAJ)
+* home.html (ely)
+* fix messaginf error (Jonathan)
 
