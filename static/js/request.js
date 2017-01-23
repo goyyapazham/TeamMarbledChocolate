@@ -23,7 +23,7 @@ var printChar = function(id){
 		    newSuggestion=document.createElement("li");
 		    newSuggestion.innerHTML=d['results'][keys[i]];
 		    newSuggestion.className='suggestion';
-		    newSuggestion.setAttribute("class","list-group-item list-group-item-info");
+		    newSuggestion.setAttribute("class","buttontest");
 		    //id stores the id of the movie
 		    newSuggestion.setAttribute("id", keys[i]);
 		    newSuggestion.addEventListener("click",function(){

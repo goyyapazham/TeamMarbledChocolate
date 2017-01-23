@@ -89,7 +89,7 @@ var loadRegister3 = function(e){
 	m.setAttribute("id","m"+i);
 	form.appendChild(m);
     }
-    var suggestions = document.createElement("ol");
+    var suggestions = document.createElement("div");
     suggestions.setAttribute("id","suggestions");
     form.appendChild(suggestions);
 };
@@ -97,7 +97,7 @@ var loadRegister3 = function(e){
 //loadRegister4 loads images of air conditioners for you to choose
 var loadRegister4 = function(e){
     makeHidden();
-    var suggestions = document.getElementsByTagName("ol")[0];
+    var suggestions = document.getElementsByTagName("div")[0];
     suggestions.remove();
     var hinput;//Hidden input fields store image preferences
     for(var i = 0; i<3; i++){

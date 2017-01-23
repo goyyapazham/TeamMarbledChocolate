@@ -29,11 +29,19 @@ h1{
   font-size: 24px;
   align-content: center
 }
-.list-group-item list-group-item-info{
-    position: relative;
+.buttontest{
+   /* position: relative;
     font: bold 45px/1.5 Helvetica, Verdana, sans-serif;
     margin-bottom: 20px;
-    color: black;
+    color: black; */
+    color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da; 
+font-size: 24px;
+}
+
+li {
+    list-style-type: none;
 }
 
 h3{
