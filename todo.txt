@@ -1,0 +1,7 @@
+* input validation (ely)
+* error handling (ely)
+* logout link to button (jonathan)
+* link up matching to frontend (nala)
+* AC matching (nala)
+* meet the coders page (nala)
+
