@@ -59,6 +59,9 @@ Jonathan Buhler -- 1/17 8:30 to 9:53
 - Linked frontend and backend of login and register
 - Still some bugs to wrinkle out
 
+Dhiraj Patel -- 1/17 12:15PM - 12:30PM
+- added a quick little css/html trick for each of the pages in our project. Title Icon. 
+
 Nala Sharadjaya -- 1/17 10:00ish to 10:52
 - Set up basic matchmaking backend process
 - Examines favorite movies, similar movies and linked genres to identify how compatible 2 users are
@@ -68,10 +71,14 @@ Nala Sharadjaya -- 1/17 10:00ish to 10:52
 Ely Sandine -- 1/18 21:00 to 22:30
 - Added input fields for profile picture and bio
 
+Dhiraj Patel -- 1/20 12:00 to 12:30
+- Trying to figure out how to style the javascript css.
+- Made a bit of css changes.
+
 Ely Sandine -- 1/20 00:30 to 00:46
 - Began home.html
 
-Ely Sandine -- 1/222 10:00 to 11:51
+Ely Sandine -- 1/22 10:00 to 11:51
 - Undid Nala's code that broke everything
 - Changed login so that is passes movie ids instead of titles into the form
 - This was done by creating additional inputs, and modifying tmdb.py
@@ -81,3 +88,10 @@ Ely Sandine -- 1/222 10:00 to 11:51
 Jonathan Buhler -- 1/22 11:00 to 12:00
 - Edited app.py and auth.py to handle image uploading
 - Front-end still needs form update
+
+Dhiraj Patel -- 1/23 12:00 to 12:30
+- Almost finished the suggestions css with Ely's Javascript
+- Just have to add hover / pointer feature.
+
+Dhiraj Patel -- 1/24  16:00 to 16:15
+- Added hover / pointer feature to the suggestions css. Suggestions has been fully CSS'ed.
