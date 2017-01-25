@@ -57,17 +57,6 @@ var replaceInput = function(id, text, val){
     form.setAttribute("value", val);
 };
 
-//getImages returns a list of the nine image tag names, in a randomly determined order
-//the order is determined by backend, and images are set using backend
-//Tags: "big", "small", "floor", "bulkhead", "slim", "fan", "window", "central", "ceilingfan"
-var getImages = function(e){
-    var imageList;
-    $.post("/images/",function(d){
-	    imageList = JSON.parse(d)['results'];
-	    loadImages(imageList);
-	});
-};
-
 //findId(id) is used as a fake getElementByName for forms. This deals with the 
 // tricky situation with suggestions
 var findId = function(id){

@@ -98,23 +98,23 @@ var loadRegister3 = function(e){
 var loadRegister4 = function(e){
     makeHidden();
     var suggestions = document.getElementsByTagName("div")[0];
-    suggestions.remove();
+    //suggestions.remove();
     var hinput;//Hidden input fields store image preferences
     for(var i = 0; i<3; i++){
 	hinput=makeInput("hidden","i"+i, "NONE");
 	hinput.setAttribute("id","i"+i);
 	form.appendChild(hinput);
     }
-    getImages();
+    loadImages();
 };
 
 //loadImages takes a list of image tags and then adds the images to the form with eventlisteners
 var loadImages = function(d){
     var image;
-    for(var i = 0; i<d.length; i++){
+    for(var i = 0; i<9; i++){
 	image = document.createElement("img");
 	image.setAttribute("src","../../static/images/img"+i+".jpg");
-	image.setAttribute("alt",d[i]);
+	image.setAttribute("alt",i);
 	image.addEventListener("click", function(e){updateAC(this.getAttribute("alt"),0);});
 	form.appendChild(image);
     }
