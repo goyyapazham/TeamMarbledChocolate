@@ -19,8 +19,8 @@
       <br><br>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-    <button class = "btn btn-info" id="matchbutton"> Match! </button>
-      <button class = "btn btn-info" id="logoutbutton"> Logout </button></form>
+    <button class = "btn btn-info" id="matchbutton" value = {{user}}> Match! </button>
+    <button class = "btn btn-info" id="logoutbutton"> Logout </button>
     </div>
 </div>
 
@@ -37,7 +37,7 @@
     <div class="col-lg-6 col-lg-offset-3 text-center">
       <table class="messages" id="messages">
 	{% for message in messages %}
-	<tr> <td>{{message[1][0]}} <td>{{message[1][1]}} </tr> </li>
+	<tr> <td>{{message[1][0]}} <td>{{message[1][1]}} <td><button class = "btn btn-info" id="idREPLACELATER">Match!</button></tr> </li>
 	{% endfor %}
       </table>
     </div>
