@@ -54,19 +54,57 @@ def titles(ids):
     return titles
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
+# WILL return user2's compatibility with user1 (i.e., how much user1 should want to go out w user2
 
-def compatibility(mov1, mov2, img1, img2):
+def all_lovers(user):
+
+    L = []
 
     db = sqlite3.connect("data/bd.db")
     c = db.cursor()
 
-    c.execute("SELECT max FROM users WHERE user == %s"%(user))
-    max = c.fetchall()[0][0]
+    c.execute("SELECT user FROM users")
+    u = c.fetchall()
+
+    db.close()
+
+    for i in range(len(u)):
+        lol = str(u[i][0])
+        if lol != user:
+            L += [ [lol, compatibility(user, lol)] ]
+
+    return L
+        
+
+# helper
+def compatibility(user1, user2):
+
+    db = sqlite3.connect("data/bd.db")
+    c = db.cursor()
+
+    c.execute("SELECT mov1, mov2, mov3 FROM users WHERE user == \"%s\""%(user1))
+    mov1 = c.fetchall()[0]
+    c.execute("SELECT mov1, mov2, mov3 FROM users WHERE user == \"%s\""%(user2))
+    mov2 = c.fetchall()[0]
+
+    c.execute("SELECT img1, img2, img3 FROM users WHERE user == \"%s\""%(user1))
+    img1 = c.fetchall()[0]
+    c.execute("SELECT img1, img2, img3 FROM users WHERE user == \"%s\""%(user2))
+    img2 = c.fetchall()[0]
+    
+    c.execute("SELECT max FROM users WHERE user == \"%s\""%(user1))
+    u1max = c.fetchall()[0][0]
+
+    db.close()
 
     mov = comp_mov(mov1, mov2)
     img = comp_img(img1, img2)
 
-    return (mov + img) * 1.0 / max * 100
+    return comp(mov, img, u1max)
+
+# helper
+def comp(mov, img, umax):
+    return round( ((mov + img) * 1.0 / umax * 100), 2 )
 
 # helper
 def comp_img(p1, p2):
@@ -75,7 +113,7 @@ def comp_img(p1, p2):
     
     for val in p1:
         if val in p2:
-            comp += 5
+            comp += 10
 
     return comp
 
@@ -150,5 +188,17 @@ print get_suggestions("good")
 print get_suggestions("good will")
 '''
 
-#TEST match
-#print match([4951, 508, 9603], [18785, 64688])
+'''
+#TEST compatibility lol
+mov1 = [4951, 489, 508]
+mov2 = [4951, 489, 9603]
+img1 = [3, 4, 7]
+img2 = [2, 3, 7]
+
+#print comp(comp_mov(mov1, mov2), comp_img(img1, img2), 168)
+#print compatibility("nala", "nala")
+#print compatibility("nala", "nalala")
+
+#print all_lovers("nala")
+#print all_lovers("nalala")
+'''
