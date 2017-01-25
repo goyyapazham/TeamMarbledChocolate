@@ -51,7 +51,6 @@ def titles(ids):
             except:
                 pass
             titles[id]=title
-        time.sleep(1)
     return titles
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
