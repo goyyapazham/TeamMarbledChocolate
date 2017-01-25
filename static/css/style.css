@@ -78,6 +78,15 @@ h3{
 .form-control{
     background-color:transparent
 }
+
+#form{
+  background: #D90D18; /*also option: A8AAA9 */
+  padding: 40px;
+  width: 500px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
 /*
 .tab-group {
   list-style: none;

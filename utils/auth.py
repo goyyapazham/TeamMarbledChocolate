@@ -31,7 +31,7 @@ def register(data):
         mov = [ int(data[7]), int(data[8]), int(data[9]) ]
         img = [ int(data[10]), int(data[11]), int(data[12]) ]
         c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d','%d', '%d', '%d', '%s')"%(data[0], data[1], hash, data[4], data[5], data[6], int(data[7]), int(data[8]), int(data[9]), int(data[10]), int(data[11]), int(data[12]), tmdb.comp_mov(mov, mov) + tmdb.comp_img(img, img), data[13])) #WILL INCLUDE OTHER THINGS LATER
-
+        tmdb.commit(data[0])
     bd.commit()
     bd.close()
 
