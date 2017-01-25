@@ -80,18 +80,16 @@ def startChat():
     recip=request.form['recip']
     print "WE GOT UP OT HERE ALL RIGHT"
     if message.startChat(user,recip):
-        print "WE got here pt2"
-        return url_for('mess')
+        return redirect(url_for('mess', user = user, recip =recip))
     else:
-        print "HOLDUP"
         return 0 #Should cause an error
 
-@app.route('/mess/', methods = ['POST'])
+@app.route('/mess/', methods = ['GET'])
 def mess():
-    user=request.form['user']
-    recip=request.form['recip']
-    print user
-    print recip
+    user=request.args['user']
+    recip=request.args['recip']
+    
+    
     
 if __name__ == '__main__':
     app.debug = True

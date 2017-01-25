@@ -30,8 +30,19 @@ var startChat = function(user, recip){
     username.setAttribute("value",recip);    
     f.appendChild(username);
     f.submit();
-}
+};
 
+//sets event listeners for the match buttons
+var assignMatchButtons = function(e){
+    var buttons = document.getElementsByClassName("btn btn-info");
+    for(var i = 0; i<buttons.length; i++){
+	button = buttons[i];
+	if(button.getAttribute("id")=="startbutton"){
+	    button.addEventListener("click",function(){startChat(this.getAttribute("name"),this.getAttribute("value"));});
+	}
+    }
+};
 document.getElementById("logoutbutton").addEventListener("click",logout);
 document.getElementById("matchbutton").addEventListener("click",function(){match(this.getAttribute("value"));});
-document.getElementById("startbutton").addEventListener("click",function(){startChat(this.getAttribute("name"),this.getAttribute("value"));});
+//document.getElementById("startbutton").addEventListener("click",function(){startChat(this.getAttribute("name"),this.getAttribute("value"));});
+assignMatchButtons();
