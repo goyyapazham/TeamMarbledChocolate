@@ -1,5 +1,6 @@
 import json
 import urllib2
+import sqlite3
 
 f = open("tmdb.txt", "r")
 key = f.read().strip()
@@ -53,8 +54,33 @@ def titles(ids):
     return titles
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
-# wrapper fxn to be used in app.py
-def match(p1, p2):
+
+def compatibility(mov1, mov2, img1, img2):
+
+    db = sqlite3.connect("data/bd.db")
+    c = db.cursor()
+
+    c.execute("SELECT max FROM users WHERE user == %s"%(user))
+    max = c.fetchall()[0][0]
+
+    mov = comp_mov(mov1, mov2)
+    img = comp_img(img1, img2)
+
+    return (mov + img) * 1.0 / max * 100
+
+# helper
+def comp_img(p1, p2):
+
+    comp = 0
+    
+    for val in p1:
+        if val in p2:
+            comp += 5
+
+    return comp
+
+# helper
+def comp_mov(p1, p2):
     sim1 = []
     sim2 = []
     gen1 = []
@@ -79,6 +105,7 @@ def match(p1, p2):
             for res in j['results']:
                 newid = int(res['id'])
                 sim2 += [newid]
+    
     return add_to_score(p1, p2, 5) + add_to_score(sim1, sim2, 2) + add_to_score(gen1, gen2, 1)
 
 #helper fxn for match
