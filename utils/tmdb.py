@@ -3,7 +3,7 @@ import urllib2
 import sqlite3
 import time
 
-f = open("../tmdb.txt", "r")
+f = open("tmdb.txt", "r")
 key = f.read().strip()
 f.close()
 
@@ -60,7 +60,7 @@ def titles(ids):
 
 def all_lovers(user):
 
-    db = sqlite3.connect("../data/bd.db")
+    db = sqlite3.connect("data/bd.db")
     c = db.cursor()
 
     c.execute("SELECT u2, c1 FROM comp WHERE u1 == \"%s\""%(user))
@@ -75,12 +75,14 @@ def all_lovers(user):
 def commit(user):
     L = everyone(user)
 
-    db = sqlite3.connect("../data/bd.db")
+    db = sqlite3.connect("data/bd.db")
     c = db.cursor()
 
     for val in L:
 
         c.execute("INSERT INTO comp VALUES (\"%s\", \"%s\", %f)"%(user, val[0], val[1]))
+        c.execute("INSERT INTO comp VALUES (\"%s\", \"%s\", %f)"%(val[0], user, val[2]))
+        
 
     db.commit()
     db.close()
@@ -89,7 +91,7 @@ def everyone(user):
 
     L = []
 
-    db = sqlite3.connect("../data/bd.db")
+    db = sqlite3.connect("data/bd.db")
     c = db.cursor()
 
     c.execute("SELECT user FROM users")
@@ -100,15 +102,15 @@ def everyone(user):
     for i in range(len(u)):
         lol = str(u[i][0])
         if lol != user:
-            L += [ [lol, compatibility(user, lol)] ]
-            time.sleep(1) # give the api a break
+            L += [ [lol, compatibility(user, lol), compatibility(lol, user)] ]
+            time.sleep(2) # give the api a break
 
     return L
 
 # helper
 def compatibility(user1, user2):
 
-    db = sqlite3.connect("../data/bd.db")
+    db = sqlite3.connect("data/bd.db")
     c = db.cursor()
 
     c.execute("SELECT mov1, mov2, mov3 FROM users WHERE user == \"%s\""%(user1))
