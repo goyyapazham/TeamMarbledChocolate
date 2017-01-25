@@ -2,7 +2,7 @@ import json
 import urllib2
 import sqlite3
 
-f = open("tmdb.txt", "r")
+f = open("../tmdb.txt", "r")
 key = f.read().strip()
 f.close()
 
@@ -60,7 +60,7 @@ def all_lovers(user):
 
     L = []
 
-    db = sqlite3.connect("data/bd.db")
+    db = sqlite3.connect("../data/bd.db")
     c = db.cursor()
 
     c.execute("SELECT user FROM users")
@@ -79,7 +79,7 @@ def all_lovers(user):
 # helper
 def compatibility(user1, user2):
 
-    db = sqlite3.connect("data/bd.db")
+    db = sqlite3.connect("../data/bd.db")
     c = db.cursor()
 
     c.execute("SELECT mov1, mov2, mov3 FROM users WHERE user == \"%s\""%(user1))
