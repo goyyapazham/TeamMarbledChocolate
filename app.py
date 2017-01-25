@@ -88,9 +88,18 @@ def startChat():
 def mess():
     user=request.args['user']
     recip=request.args['recip']
-    
-    
-    
+    messages=message.getMessages(user,recip)
+    return render_template('mess.html', user = user, recip = recip, messages=messages)
+
+@app.route('/sendMess/', methods = ['POST'])
+def sendMess():
+    user=request.form['user']
+    recip=request.form['recip']
+    text=request.form['text']
+    message.message(user,recip,text);
+    messages=message.getMessages(user,recip)
+    return render_template('mess.html', user = user, recip = recip, messages=messages)
+
 if __name__ == '__main__':
     app.debug = True
     app.run()

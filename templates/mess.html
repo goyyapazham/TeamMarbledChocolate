@@ -39,8 +39,10 @@
 	<tr> <td>{{message[0]}}</td> <td>{{message[1]}} </td> </tr> </li>
 	{% endfor %}
       </table>
-      <form action = "/sendMessage/">
+      <form action = "/sendMess/" method="POST">
 	<input type = "text" name="text">
+	<input type = "hidden" name="user" value={{user}}>
+	<input type = "hidden" name="recip" value={{recip}}>
 	<input type="submit" value="submit">
       </form>
     </div>
