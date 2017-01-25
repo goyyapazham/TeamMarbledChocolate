@@ -19,8 +19,14 @@ def message(data):
     return True
 
 def getChat(data):
+    data[0] = str(data[0])
+    data[1] = str(data[1])
     data = sorted(data[:2], key=str.lower)
     return data[0] + '-' + data[1]
+
+def getUsers(data):
+    data = data.split('-')
+    return data
 
 def chatExists(data, c):
     s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = '%s'" %(getChat(data)))
@@ -28,6 +34,8 @@ def chatExists(data, c):
         return True
     return False
 
+#Returns list of messages in conversatio in tuples
+#('Jonathan', 'Hi Ely')
 def getMessages(data):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
@@ -36,3 +44,25 @@ def getMessages(data):
     for r in s:
         messages.append((r[0], r[1]))
     return messages
+
+def getChatWithUser(data):
+    bd = sqlite3.connect('data/bd.db')
+    c = bd.cursor()
+    chats = []
+    s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name LIKE '%s-%%' OR name LIKE '%%-%s'" %(data[0], data[0]))
+    for r in s:
+        chats.append((r[1]))
+    return chats
+
+#Returns list with format: (conversation title, last message in form (sender, content))
+#('Ely-Jonathan', ('Jonathan', 'Hi Ely'))
+def getRecents(data):
+    bd = sqlite3.connect('data/bd.db')
+    c = bd.cursor()
+    chats = getChatWithUser(data)
+    recents = []
+    for r in chats:
+        print r
+        messages = getMessages(getUsers(r))
+        recents.append((r, messages[-1]))
+    return recents
