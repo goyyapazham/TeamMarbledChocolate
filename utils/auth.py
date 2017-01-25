@@ -42,7 +42,7 @@ def login(data):
     if not userExists(data[0], c):
         return [False]
     else:
-        s = c.execute("SELECT pass FROM USERS WHERE user = '%s'" %(data[0]))
+        s = c.execute("SELECT pw FROM USERS WHERE user = '%s'" %(data[0]))
         print s
         p = s.fetchone()[0]
         print p
