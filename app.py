@@ -17,7 +17,9 @@ def home():
         return redirect(url_for('login'))
     else:
         user = session['user']
-        return render_template('home.html', user = session['user'], messages = message.getMessages(user))
+        messages = message.getRecents(user)
+        print messages
+        return render_template('home.html', user = user, nummessages = len(messages), messages=messages)
 
 @app.route('/login/')
 def login():
@@ -45,7 +47,7 @@ def create():
         return redirect(url_for('login'))
     return redirect(url_for('login'))
 
-@app.route('/logout/')
+@app.route('/logout/', methods = ['POST'])
 def logout():
     if 'user' in session:
         session.pop('user')
