@@ -13,11 +13,11 @@ def startChat(user, recip):
 
 def randomPickUpLine():
     pickUps = []
-    pickUps[0] = 'Hey gurl, wanna see my air-conditioner?'
-    pickUps[1] = 'Wanna come to my house and see if you can turn on my air-conditioner too?'
-    pickUps[2] = 'Is that an air-conditioner in your pants or are you just glad to see me?'
-    pickUps[3] = 'Is it just me or do we need an air-conditioner in here?'
-    pickUps[4] = "You must not have an air-conditioner, becasue I'm your fan and you're turning me on"
+    pickUps += ['Hey gurl, wanna see my air-conditioner?']
+    pickUps += ['Wanna come to my house and see if you can turn on my air-conditioner too?']
+    pickUps += ['Is that an air-conditioner in your pants or are you just glad to see me?']
+    pickUps += ['Is it just me or do we need an air-conditioner in here?']
+    pickUps += ["You must not have an air-conditioner, becasue I'm your fan and you're turning me on"]
     return pickUps[randint(0,4)]
 
 def message(user, recip, text):
