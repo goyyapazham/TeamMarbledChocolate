@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,8 +18,8 @@
       <br><br>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-    <button class = "btn btn-info" id="matchbutton"> Match! </button>
-      <form action = "/logout/" method = "POST"><button class = "btn btn-info" id="logoutbutton" type="submit" formaction="/logout/"> Logout </button></form>
+    <button class = "btn btn-info" id="matchbutton" value = {{user}}> Match! </button>
+    <button class = "btn btn-info" id="logoutbutton"> Logout </button>
     </div>
 </div>
 
@@ -37,15 +36,14 @@
     <div class="col-lg-6 col-lg-offset-3 text-center">
       <table class="messages" id="messages">
 	{% for message in messages %}
-	<tr> <td>{{message[1][0]}} <td>{{message[1][1]}} </li>
+	<tr> <td>{{message[1][0]}} <td>{{message[1][1]}} <td><button class = "btn btn-info" id="startChat">Match!</button></tr> </li>
 	{% endfor %}
       </table>
     </div>
 </div>
 <!---->
 <script src="../../static/js/jquery-3.1.1.min.js"></script>
-<script src="../../static/js/request.js"></script>
-<script src="../../static/js/login.js"></script>
+<script src="../../static/js/home.js"></script>
 
   </body>
 </html>
