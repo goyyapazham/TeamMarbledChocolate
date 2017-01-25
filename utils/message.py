@@ -75,5 +75,8 @@ def getRecents(user):
         print r[1]
         messages = getMessages(r[0], r[1])
         title = getTitle(r[0], r[1])
-        recents.append((title, messages[-1]))
+        try:
+            recents.append((title, messages[-1]))
+        except IndexError:
+            recents = []
     return recents
