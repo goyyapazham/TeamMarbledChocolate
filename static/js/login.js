@@ -57,7 +57,6 @@ var loadRegister1 = function(e){
     makeHidden();
     setDescription("Enter your username, email address, password, and reenter your password");
     form.appendChild(makeInput("text","user","Username"));
-    form.appendChild(makeInput("text","email","Email"));
     form.appendChild(makeInput("password","p1","Password"));
     form.appendChild(makeInput("password","p2","Password"));
 };
@@ -73,7 +72,6 @@ var loadRegister2 = function(e){
     //OK I'LL TRY
     form.appendChild(makeInput("text","gender","Your gender"));
     form.appendChild(makeInput("text","pref","Gender(s) you're looking for"));
-    form.appendChild(makeInput("text","security","Ely Sandine"));
 };
 
 //loadRegister3 loads input for your favorite movie, and adds autocomplete
