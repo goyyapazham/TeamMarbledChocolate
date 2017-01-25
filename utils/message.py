@@ -27,6 +27,14 @@ def getUsers(title):
     users = title.split('-')
     return users
 
+def getNumberUnread(user):
+    unread = 0
+    recents = getRecents(user)
+    for r in recents:
+        if r[1][0] != user:
+            unread += 1
+    return unread
+
 def chatExists(user, recip, c):
     s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = '%s'" %(getTitle(user, recip)))
     for r in s:
