@@ -6,7 +6,15 @@
 body {
   background: #B6CED9;
 }
-    
+
+img{
+    border-radius: 25px;
+    height: 150px;
+    width: 140px;
+    cursor: pointer;
+    border:  solid transparent; 
+}
+
 h1{   
   text-align: center;
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -69,6 +77,15 @@ h3{
 }
 .form-control{
     background-color:transparent
+}
+
+#form{
+  background: #D90D18; /*also option: A8AAA9 */
+  padding: 40px;
+  width: 500px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 /*
 .tab-group {

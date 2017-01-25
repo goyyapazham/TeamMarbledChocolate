@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 from utils import auth, tmdb, message
 import json
-
 app = Flask(__name__)
 app.secret_key = 'pineapples'
 
@@ -19,7 +18,7 @@ def home():
         user = session['user']
         messages = message.getRecents(user)
         print messages
-        return render_template('home.html', user = user, nummessages = len(messages), messages=messages)
+        return render_template('home.html', user = user, nummessages = message.getNumberUnread(user), messages=messages)
 
 @app.route('/login/')
 def login():
@@ -69,6 +68,29 @@ def process():
     print ret
     return json.dumps(ret)
 
+@app.route('/match/', methods = ['POST'])
+def match():
+    user=request.form['user']
+    matches = tmdb.all_lovers(user);
+    print matches
+    return render_template('match.html', user = user, matches = matches)
+
+@app.route('/startChat/', methods = ['POST'])
+def startChat():
+    user=request.form['user']
+    recip=request.form['recip']
+    if message.startChat(user,recip):
+        return url_for('mess', user = user, recip = recip)
+    else:
+        return 0 #Should cause an error
+
+@app.route('/message/', methods = ['POST'])
+def mess():
+    user=request.form['user']
+    print user
+    recip=request.form['recip']
+    print recip
+    
 if __name__ == '__main__':
     app.debug = True
     app.run()
