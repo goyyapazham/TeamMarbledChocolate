@@ -71,12 +71,20 @@ Nala Sharadjaya -- 1/17 10:00ish to 10:52
 Ely Sandine -- 1/18 21:00 to 22:30
 - Added input fields for profile picture and bio
 
+Nala Sharadjaya -- 1/19 20:51 to 23:26
+- Database utils
+
 Dhiraj Patel -- 1/20 12:00 to 12:30
 - Trying to figure out how to style the javascript css.
 - Made a bit of css changes.
 
 Ely Sandine -- 1/20 00:30 to 00:46
 - Began home.html
+
+Nala Sharadjaya -- 1/20 12:19
+- Debugging with database stuff
+- Instructions for linking to frontend
+- Was aware of how broken I left things
 
 Ely Sandine -- 1/22 10:00 to 11:51
 - Undid Nala's code that broke everything
@@ -93,6 +101,9 @@ Dhiraj Patel -- 1/23 12:00 to 12:30
 - Almost finished the suggestions css with Ely's Javascript
 - Just have to add hover / pointer feature.
 
+Ely Sandine -- 1/23 14:11
+- Add source images
+
 Dhiraj Patel -- 1/24  16:00 to 16:15
 - Added hover / pointer feature to the suggestions css. Suggestions has been fully CSS'ed.
 
@@ -100,7 +111,23 @@ Jonathan Buhler -- 1/24 10:30 to 11:23
 - Added access functions to messages.py
 - Fixed many bugs said access functions revealed
 
-Dhiraj Patel -- 1/25 12:30 to 14:30PM
+Dhiraj Patel -- 1/25 12:30 to 14:30
 - CSS'ed the images that ely had uploaded to the login page at the end for the user to pick their favorite AC from.
 - Used HTML tables to place the 9 images into a 3x3 grid for a better user interface.
 - added cursor pointer to the images. 
+
+Nala Sharadjaya -- 1/24 1:30ish to 2:04
+- Update matching
+
+Ely Sandine -- 1/24 11:43
+- Messaging utils
+
+Jonathan Buhler -- 1/24 11:57
+- Messaging utils
+
+Nala Sharadjaya -- 12:00ish to 12:49, 3:00ish to 3:52
+- Dummy data
+- Compatibility utils
+
+Nala Sharadjaya -- 4:30ish to 4:57
+- Meet the coders
