@@ -1,5 +1,6 @@
 import sqlite3
 from collections import OrderedDict
+from random import randint
 
 def startChat(user, recip):
     bd = sqlite3.connect('data/bd.db')
@@ -7,7 +8,17 @@ def startChat(user, recip):
     if chatExists(user, recip, c):
         return False
     c.execute("CREATE TABLE '%s' (SENDER TEXT, MESSAGE TEXT)" %(getTitle(user, recip)))
+    message(user, recip, randomPickUpLine())
     return True
+
+def randomPickUpLine():
+    pickUps = []
+    pickUps[0] = 'Hey gurl, wanna see my air-conditioner?'
+    pickUps[1] = 'Wanna come to my house and see if you can turn on my air-conditioner too?'
+    pickUps[2] = 'Is that an air-conditioner in your pants or are you just glad to see me?'
+    pickUps[3] = 'Is it just me or do we need an air-conditioner in here?'
+    pickUps[4] = "You must not have an air-conditioner, becasue I'm your fan and you're turning me on"
+    return pickUps[randint(0,4)]
 
 def message(user, recip, text):
     bd = sqlite3.connect('data/bd.db')
@@ -40,6 +51,16 @@ def chatExists(user, recip, c):
     for r in s:
         return True
     return False
+
+def notMatched(user):
+    bd = sqlite3.connect('data/bd.db')
+    c = bd.cursor()
+    unmatched = []
+    s = c.execute('SELECT * FROM USERS')
+    for r in s:
+        if not chatExists(user, r, c):
+            unmatched.append(r)
+    return unmatched
 
 #Returns list of messages in conversatio in tuples
 #('Jonathan', 'Hi Ely')
