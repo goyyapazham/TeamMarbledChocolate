@@ -1,66 +1,88 @@
 import sqlite3
 from collections import OrderedDict
 
-def startChat(data):
+def startChat(user, recip):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
-    if chatExists(data, c):
+    if chatExists(user, recip, c):
         return False
-    c.execute("CREATE TABLE '%s' (SENDER TEXT, MESSAGE TEXT)" %(getChat(data)))
+    c.execute("CREATE TABLE '%s' (SENDER TEXT, MESSAGE TEXT)" %(getTitle(user, recip)))
     return True
 
-def message(data):
+def message(user, recip, text):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
-    if len(data[2]) == 0:
+    if len(text) == 0:
         return False
-    c.execute("INSERT INTO '%s' VALUES ('%s', '%s')" %(getChat(data), data[0], data[2]))
+    c.execute("INSERT INTO '%s' VALUES ('%s', '%s')" %(getTitle(user, recip), user, text))
     bd.commit()
     return True
 
-def getChat(data):
-    data = sorted(data[:2])
-    return data[0] + '-' + data[1]
+def getTitle(user, recip):
+    l = [user, recip]
+    title = sorted(l)
+    return title[0] + '-' + title[1]
 
-def getUsers(data):
-    data = data.split('-')
-    return data
+def getUsers(title):
+    users = title.split('-')
+    return users
 
-def chatExists(data, c):
-    s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = '%s'" %(getChat(data)))
+def chatExists(user, recip, c):
+    s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = '%s'" %(getTitle(user, recip)))
     for r in s:
         return True
     return False
 
 #Returns list of messages in conversatio in tuples
 #('Jonathan', 'Hi Ely')
-def getMessages(data):
+def getMessages(user, recip):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
     messages = []
-    s = c.execute("SELECT * FROM '%s'" %(getChat(data)))
+    s = c.execute("SELECT * FROM '%s'" %(getTitle(user, recip)))
     for r in s:
         messages.append((r[0], r[1]))
     return messages
 
-def getChatWithUser(data):
+def getTitleWithUser(user):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
     chats = []
-    s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name LIKE '%s-%%' OR name LIKE '%%-%s'" %(data[0], data[0]))
+    s = c.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name LIKE '%s-%%' OR name LIKE '%%-%s'" %(user, user))
     for r in s:
-        chats.append((r[1]))
+        r = getUsers(r[1])
+        t = (r[0], r[1])
+        chats.append(t)
     return chats
 
 #Returns list with format: (conversation title, last message in form (sender, content))
 #('Ely-Jonathan', ('Jonathan', 'Hi Ely'))
-def getRecents(data):
+def getRecents(user):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
-    chats = getChatWithUser(data)
+    chats = getTitleWithUser(user)
     recents = []
     for r in chats:
-        print r
-        messages = getMessages(getUsers(r))
-        recents.append((r, messages[-1]))
+        print r[0]
+        print r[1]
+        messages = getMessages(r[0], r[1])
+        title = getTitle(r[0], r[1])
+        recents.append((title, messages[-1]))
     return recents
+
+
+bd = sqlite3.connect('data/bd.db')
+c = bd.cursor()
+u = 'jonathan'
+r = 'ely'
+#startChat(u, r)
+#message(u, r, 'knob')
+#message(r, u, 'penis')
+#print getTitle(u, r)
+#print getUsers(getTitle(u, r))
+a = getMessages(u, r)
+#for b in a:
+    #print b
+y = getRecents(u)
+for z in y:
+    print z
