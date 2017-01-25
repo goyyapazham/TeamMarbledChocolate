@@ -56,6 +56,26 @@ def titles(ids):
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
 # WILL return user2's compatibility with user1 (i.e., how much user1 should want to go out w user2
 
+def all_lovers(user):
+
+    L = []
+
+    db = sqlite3.connect("data/bd.db")
+    c = db.cursor()
+
+    c.execute("SELECT user FROM users")
+    u = c.fetchall()
+
+    db.close()
+
+    for i in range(len(u)):
+        lol = str(u[i][0])
+        if lol != user:
+            L += [ [lol, compatibility(user, lol)] ]
+
+    return L
+        
+
 # helper
 def compatibility(user1, user2):
 
@@ -80,7 +100,11 @@ def compatibility(user1, user2):
     mov = comp_mov(mov1, mov2)
     img = comp_img(img1, img2)
 
-    return (mov + img) * 1.0 / u1max * 100
+    return comp(mov, img, u1max)
+
+# helper
+def comp(mov, img, umax):
+    return round( ((mov + img) * 1.0 / umax * 100), 2 )
 
 # helper
 def comp_img(p1, p2):
@@ -164,6 +188,17 @@ print get_suggestions("good")
 print get_suggestions("good will")
 '''
 
-
+'''
 #TEST compatibility lol
-print compatibility("nala", "nala")
+mov1 = [4951, 489, 508]
+mov2 = [4951, 489, 9603]
+img1 = [3, 4, 7]
+img2 = [2, 3, 7]
+
+#print comp(comp_mov(mov1, mov2), comp_img(img1, img2), 168)
+#print compatibility("nala", "nala")
+#print compatibility("nala", "nalala")
+
+#print all_lovers("nala")
+#print all_lovers("nalala")
+'''
