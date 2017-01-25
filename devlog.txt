@@ -60,7 +60,7 @@ Jonathan Buhler -- 1/17 8:30 to 9:53
 - Still some bugs to wrinkle out
 
 Dhiraj Patel -- 1/17 12:15PM - 12:30PM
-- added a quick little css/html trick for each of the pages in our project. Title Icon. 
+- added a quick little css/html trick for each of the pages in our project. Title Icon.
 
 Nala Sharadjaya -- 1/17 10:00ish to 10:52
 - Set up basic matchmaking backend process
@@ -95,3 +95,7 @@ Dhiraj Patel -- 1/23 12:00 to 12:30
 
 Dhiraj Patel -- 1/24  16:00 to 16:15
 - Added hover / pointer feature to the suggestions css. Suggestions has been fully CSS'ed.
+
+Jonathan Buhler -- 1/24 10:30 to 11:23
+- Added access functions to messages.py
+- Fixed many bugs said access functions revealed
