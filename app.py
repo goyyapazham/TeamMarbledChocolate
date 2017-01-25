@@ -71,7 +71,9 @@ def process():
 @app.route('/match/', methods = ['POST'])
 def match():
     user=request.form['user']
-    print user
+    matches = tmdb.all_lovers(user);
+    print matches
+    return render_template('match.html', user = user, matches = matches)
 
 if __name__ == '__main__':
     app.debug = True
