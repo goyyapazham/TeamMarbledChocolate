@@ -69,20 +69,3 @@ def getRecents(user):
         title = getTitle(r[0], r[1])
         recents.append((title, messages[-1]))
     return recents
-
-
-bd = sqlite3.connect('data/bd.db')
-c = bd.cursor()
-u = 'jonathan'
-r = 'ely'
-#startChat(u, r)
-#message(u, r, 'knob')
-#message(r, u, 'penis')
-#print getTitle(u, r)
-#print getUsers(getTitle(u, r))
-a = getMessages(u, r)
-#for b in a:
-    #print b
-y = getRecents(u)
-for z in y:
-    print z
