@@ -33,19 +33,22 @@
     </div>
 </div>
 <!---->
-<div class="row">
+<br>    
+</div>
+
+<div class="row" id="form">
     <div class="col-lg-6 col-lg-offset-3 text-center">
       <table class="matches" id="matches">
 	{% for message in matches %}
-	<tr> <td>{{message[0]}} <td>{{message[1]}} <td><button class = "btn btn-info" value={{message[0]}} name={{user}} id="startbutton">Match!!</button></tr> </li>
+          <tr> <td>{{message[0]}}</td> <td>{{message[1]}}</td> <td><button class = "btn btn-info" value={{message[0]}} name={{user}} id="startbutton">Match!!</button></td></tr>
 	{% endfor %}
       </table>
     </div>
-</div>
+      </div>
 <!---->
 <script src="../../static/js/jquery-3.1.1.min.js"></script>
 <script src="../../static/js/home.js"></script>
 
-  </body>
+ 
+</body>
 </html>
-
