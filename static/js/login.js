@@ -216,12 +216,14 @@ var next = function(e){
     }else if(state=="reg3"){
 	state="reg4"
 	loadRegister4();
-    }else if(state=="reg4"){
-	state="reg5"
+    }else if(state=="reg4" || state=="login"){
+	form.submit();
+    }
+	/*state="reg5" Deprecated Features
 	loadRegister5();
     }else if(state=="reg5" || state=="login"){
 	form.submit();
-    }
+	}*/
 };
 
 //TRIGGERS

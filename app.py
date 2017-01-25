@@ -40,7 +40,7 @@ def authenticate():
 def create():
     if isUser():
         return redirect(url_for('home'))
-    data = [request.form['user'], request.form['email'], request.form['p1'], request.form['p2'], request.form['gender'], request.form['pref'], request.form['security'], request.form['movie0'], request.form['movie1'], request.form['movie2'], request.form['i0'], request.form['i1'], request.form['i2'], request.form['bio']]
+    data = [request.form['user'], request.form['email'], request.form['p1'], request.form['p2'], request.form['gender'], request.form['pref'], request.form['security'], request.form['movie0'], request.form['movie1'], request.form['movie2'], request.form['i0'], request.form['i1'], request.form['i2']]
     auth.profile(request.form['user'])
     if auth.register(data):
         return redirect(url_for('login'))
