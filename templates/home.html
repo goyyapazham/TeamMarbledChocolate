@@ -35,11 +35,11 @@
 <!---->
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-      <ol class="messages" id="messages">
+      <table class="messages" id="messages">
 	{% for message in messages %}
-	<li> {{message[1][0]}} {{message[1][1]}} </li>
+	<tr> <td>{{message[1][0]}} <td>{{message[1][1]}} </li>
 	{% endfor %}
-      </ol>
+      </table>
     </div>
 </div>
 <!---->
