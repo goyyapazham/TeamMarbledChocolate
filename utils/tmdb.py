@@ -1,6 +1,7 @@
 import json
 import urllib2
 import sqlite3
+import time
 
 f = open("../tmdb.txt", "r")
 key = f.read().strip()
@@ -18,10 +19,10 @@ def get_suggestions(query):
     j = read_json(url)
 
     #error handling: API error
-    try:
+    if 'status_code' in j:
         if j['status_code'] == 7:
             return "Whoops! The API key didn't work."
-    except:
+    elif 'total_results' in j and j['total_results'] > 0:
         return titles(get_ids(j))
         #return titles(ids)
 
@@ -41,22 +42,50 @@ def titles(ids):
     titles = {}
     for id in ids:
         j = read_json("http://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(id, key))
-        try:
+        if 'status_code' in j:
             if j['status_code'] == 7:
                 return "Whoops! The API key didn't work."
-        except:
+        elif 'total_results' in j and j['total_results'] > 0:
             title = j['original_title']
             try:
                 title = str(title)
             except:
                 pass
             titles[id]=title
+        time.sleep(1)
     return titles
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
 # WILL return user2's compatibility with user1 (i.e., how much user1 should want to go out w user2
 
 def all_lovers(user):
+
+    db = sqlite3.connect("../data/bd.db")
+    c = db.cursor()
+
+    c.execute("SELECT u2, c1 FROM comp WHERE u1 == \"%s\""%(user))
+    res = c.fetchall()
+
+    L = []
+    for val in res:
+        L += [ [str(val[0]), val[1]] ]
+
+    return L
+
+def commit(user):
+    L = everyone(user)
+
+    db = sqlite3.connect("../data/bd.db")
+    c = db.cursor()
+
+    for val in L:
+
+        c.execute("INSERT INTO comp VALUES (\"%s\", \"%s\", %f)"%(user, val[0], val[1]))
+
+    db.commit()
+    db.close()
+
+def everyone(user):
 
     L = []
 
@@ -72,9 +101,9 @@ def all_lovers(user):
         lol = str(u[i][0])
         if lol != user:
             L += [ [lol, compatibility(user, lol)] ]
+            time.sleep(1) # give the api a break
 
     return L
-        
 
 # helper
 def compatibility(user1, user2):
@@ -125,24 +154,26 @@ def comp_mov(p1, p2):
     gen2 = []
     for id in p1:
         j = read_json("https://api.themoviedb.org/3/movie/%d/similar?api_key=%s&language=en-US&page=1"%(id, key))
-        try:
+        if 'status_code' in j:
             if j['status_code'] == 7:
                 return "Whoops! The API key didn't work."
-        except:
+        elif 'total_results' in j and j['total_results'] > 0:
             gen1 = add_no_dup(gen1, get_genres(id))
             for res in j['results']:
                 newid = int(res['id'])
                 sim1 += [newid]
+        time.sleep(1)
     for id in p2:
         j = read_json("https://api.themoviedb.org/3/movie/%d/similar?api_key=%s&language=en-US&page=1"%(id, key))
-        try:
+        if 'status_code' in j:
             if j['status_code'] == 7:
                 return "Whoops! The API key didn't work."
-        except:
+        elif 'total_results' in j and j['total_results'] > 0:
             gen2 = add_no_dup(gen2, get_genres(id))
             for res in j['results']:
                 newid = int(res['id'])
                 sim2 += [newid]
+        time.sleep(1)
     
     return add_to_score(p1, p2, 5) + add_to_score(sim1, sim2, 2) + add_to_score(gen1, gen2, 1)
 
@@ -157,11 +188,11 @@ def add_to_score(L1, L2, x):
 #helper fxn for match
 def get_genres(movieid):
     j = read_json("https://api.themoviedb.org/3/movie/%d?api_key=%s&language=en-US"%(movieid, key))
-    try:
+    ret = []
+    if 'status_code' in j:
         if j['status_code'] == 7:
             return "Whoops! The API key didn't work."
-    except:
-        ret = []
+    elif 'total_results' in j and j['total_results'] > 0:
         genres = j['genres']
         for res in genres:
             ret += [int(res['id'])]
@@ -202,3 +233,43 @@ img2 = [2, 3, 7]
 #print all_lovers("nala")
 #print all_lovers("nalala")
 '''
+
+'''
+mov = [4951, 674, 1124]
+img = [2, 3, 4]
+
+print comp_mov(mov, mov) + comp_img(img, img)
+'''
+
+'''
+print all_lovers("nala")
+print("\n")
+print all_lovers("twat")
+print("\n")
+print all_lovers("nalala")
+print("\n")
+print all_lovers("nal")
+print("\n")
+print all_lovers("alan")
+print("\n")
+print all_lovers("disneyfan123")
+'''
+
+'''
+all_lovers("lol")
+
+print compatibility("lol", "nala")
+time.sleep(1);
+print compatibility("lol", "twat")
+time.sleep(1);
+print compatibility("lol", "nalala")
+time.sleep(1);
+print compatibility("lol", "nal")
+time.sleep(1);
+print compatibility("lol", "alan")
+time.sleep(1);
+print compatibility("lol", "disneyfan123")
+time.sleep(1);
+'''
+
+#print all_lovers("nala")
