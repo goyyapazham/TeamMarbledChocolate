@@ -111,12 +111,46 @@ var loadRegister4 = function(e){
 //loadImages takes a list of image tags and then adds the images to the form with eventlisteners
 var loadImages = function(d){
     var image;
+    /*
+    imageTable = document.createElement("table");
+    imageTableRowOne=document.createElement("tr");
+    imageTableRowTwo=document.createElement("tr");
+    imageTableRowThree=document.createElement("tr");
+    imageTableDataOne=document.createElement("td");
+    imageTableDataTwo=document.createElement("td");
+    imageTableDataThree=document.createElement("td");
+    */
+    
+    table=document.createElement("table");
+    tablerow=document.createElement("tr");
+    tabledata=document.createElement("td");
+    form.appendChild(table);
     for(var i = 0; i<9; i++){
-	image = document.createElement("img");
-	image.setAttribute("src","../../static/images/img"+i+".jpg");
-	image.setAttribute("alt",i);
-	image.addEventListener("click", function(e){updateAC(this.getAttribute("alt"),0);});
-	form.appendChild(image);
+        image = document.createElement("img");
+       image.setAttribute("src","../../static/images/img"+i+".jpg");
+        image.setAttribute("alt",i);
+        image.addEventListener("click", function(e){updateAC(this.getAttribute("alt"),0);});
+        table.appendChild(tablerow);
+        tablerow.appendChild(tabledata);
+        tabledata.appendChild(image);
+        /*
+        form.appendChild(imagetable);
+        if(i<3){
+            form.appendChild(imageTableRowOne);
+            form.appendChild(imageTableDataOne);
+            form.appendChild(image);
+        }
+        if(i<6){
+            form.appendChild(imageTableRowTwo);
+            form.appendChild(imageTableDataTwo);
+            form.appendChild(image);
+        }
+        if(i<9){
+            form.appendChild(imageTableRowThree);
+            form.appendChild(imageTableDataThree);
+            form.appendChild(image);
+        }
+        */
     }
 };
 
