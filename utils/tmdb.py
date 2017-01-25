@@ -54,19 +54,33 @@ def titles(ids):
     return titles
 
 ### MATCH BASED ON ARRAYS OF MOVIES LISTED ON PROFILE
+# WILL return user2's compatibility with user1 (i.e., how much user1 should want to go out w user2
 
-def compatibility(mov1, mov2, img1, img2):
+# helper
+def compatibility(user1, user2):
 
     db = sqlite3.connect("data/bd.db")
     c = db.cursor()
 
-    c.execute("SELECT max FROM users WHERE user == %s"%(user))
-    max = c.fetchall()[0][0]
+    c.execute("SELECT mov1, mov2, mov3 FROM users WHERE user == \"%s\""%(user1))
+    mov1 = c.fetchall()[0]
+    c.execute("SELECT mov1, mov2, mov3 FROM users WHERE user == \"%s\""%(user2))
+    mov2 = c.fetchall()[0]
+
+    c.execute("SELECT img1, img2, img3 FROM users WHERE user == \"%s\""%(user1))
+    img1 = c.fetchall()[0]
+    c.execute("SELECT img1, img2, img3 FROM users WHERE user == \"%s\""%(user2))
+    img2 = c.fetchall()[0]
+    
+    c.execute("SELECT max FROM users WHERE user == \"%s\""%(user1))
+    u1max = c.fetchall()[0][0]
+
+    db.close()
 
     mov = comp_mov(mov1, mov2)
     img = comp_img(img1, img2)
 
-    return (mov + img) * 1.0 / max * 100
+    return (mov + img) * 1.0 / u1max * 100
 
 # helper
 def comp_img(p1, p2):
@@ -148,8 +162,8 @@ print get_suggestions("love a")
 #good will hunting
 print get_suggestions("good")
 print get_suggestions("good will")
+'''
+
 
 #TEST compatibility lol
-print comp_mov([671, 672, 673], [671, 672, 673])
-print comp_img([0, 1, 8], [0, 1, 8])
-'''
+print compatibility("nala", "nala")
