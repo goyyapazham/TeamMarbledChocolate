@@ -5,6 +5,7 @@ def startChat(user, recip):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
     if chatExists(user, recip, c):
+        print "YO WASSUP"
         return False
     c.execute("CREATE TABLE '%s' (SENDER TEXT, MESSAGE TEXT)" %(getTitle(user, recip)))
     return True

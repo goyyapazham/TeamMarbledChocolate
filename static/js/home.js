@@ -16,6 +16,8 @@ var match = function(user){
     f.submit();
 };
 var startChat = function(user, recip){
+    console.log(user);
+    console.log(recip);
     var f = document.createElement("form");
     f.setAttribute("action","/startChat/");
     f.setAttribute("method","POST");
