@@ -25,7 +25,7 @@ def home():
 def login():
     if isUser():
         return redirect(url_for('home'))
-    return render_template('login.html')
+    return render_template('login.html', message = "")
 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():

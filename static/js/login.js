@@ -101,7 +101,7 @@ var loadRegister4 = function(e){
     //suggestions.remove();
     var hinput;//Hidden input fields store image preferences
     for(var i = 0; i<3; i++){
-	hinput=makeInput("hidden","i"+i, "NONE");
+	hinput=makeInput("hidden","i"+i, "10");
 	hinput.setAttribute("id","i"+i);
 	form.appendChild(hinput);
     }
