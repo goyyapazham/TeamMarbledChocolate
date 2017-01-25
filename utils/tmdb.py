@@ -24,7 +24,6 @@ def get_suggestions(query):
             return "Whoops! The API key didn't work."
     elif 'total_results' in j and j['total_results'] > 0:
         return titles(get_ids(j))
-        #return titles(ids)
 
 # helper fxn for get_suggestions
 def get_ids(j):
@@ -45,7 +44,7 @@ def titles(ids):
         if 'status_code' in j:
             if j['status_code'] == 7:
                 return "Whoops! The API key didn't work."
-        elif 'total_results' in j and j['total_results'] > 0:
+        else:
             title = j['original_title']
             try:
                 title = str(title)
