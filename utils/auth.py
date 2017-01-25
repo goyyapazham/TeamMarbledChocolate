@@ -10,6 +10,7 @@ def hashPass(password):
 def register(data):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
+    data[0] = data[0].lower()
     if (userExists(data[0], c)):
         return False
     elif not data[0].isalnum() or not data[2].isalnum():
@@ -36,6 +37,7 @@ def register(data):
 def login(data):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
+    data[0] = data[0].lower()
     if not userExists(data[0], c):
         return [False]
     else:

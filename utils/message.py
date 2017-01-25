@@ -19,9 +19,7 @@ def message(data):
     return True
 
 def getChat(data):
-    data[0] = str(data[0])
-    data[1] = str(data[1])
-    data = sorted(data[:2], key=str.lower)
+    data = sorted(data[:2])
     return data[0] + '-' + data[1]
 
 def getUsers(data):
