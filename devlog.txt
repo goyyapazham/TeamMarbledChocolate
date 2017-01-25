@@ -99,3 +99,8 @@ Dhiraj Patel -- 1/24  16:00 to 16:15
 Jonathan Buhler -- 1/24 10:30 to 11:23
 - Added access functions to messages.py
 - Fixed many bugs said access functions revealed
+
+Dhiraj Patel -- 1/25 12:30 to 14:30PM
+- CSS'ed the images that ely had uploaded to the login page at the end for the user to pick their favorite AC from.
+- Used HTML tables to place the 9 images into a 3x3 grid for a better user interface.
+- added cursor pointer to the images. 
