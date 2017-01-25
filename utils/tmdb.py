@@ -75,7 +75,7 @@ def comp_img(p1, p2):
     
     for val in p1:
         if val in p2:
-            comp += 5
+            comp += 10
 
     return comp
 
@@ -148,7 +148,8 @@ print get_suggestions("love a")
 #good will hunting
 print get_suggestions("good")
 print get_suggestions("good will")
-'''
 
-#TEST match
-#print match([4951, 508, 9603], [18785, 64688])
+#TEST compatibility lol
+print comp_mov([671, 672, 673], [671, 672, 673])
+print comp_img([0, 1, 8], [0, 1, 8])
+'''
