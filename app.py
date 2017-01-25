@@ -19,7 +19,7 @@ def home():
         user = session['user']
         messages = message.getRecents(user)
         print messages
-        return render_template('home.html', user = user, nummessages = len(messages), messages=messages)
+        return render_template('home.html', user = user, nummessages = message.getNumberUnread(user), messages=messages)
 
 @app.route('/login/')
 def login():
