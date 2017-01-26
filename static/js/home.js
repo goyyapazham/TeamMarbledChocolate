@@ -48,7 +48,8 @@ var startChat = function(user, recip){
 
 //sets event listeners for the match buttons
 var assignMatchButtons = function(e){
-    var buttons = document.getElementsByClassName("btn btn-info");
+    var buttons = document.getElementsTagName("button");
+    console.log(buttons);
     for(var i = 0; i<buttons.length; i++){
 	button = buttons[i];
 	if(button.getAttribute("id")=="startbutton"){
