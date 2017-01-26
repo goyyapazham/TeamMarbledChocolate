@@ -11,17 +11,11 @@ def register(data):
     bd = sqlite3.connect('data/bd.db')
     c = bd.cursor()
     data[0] = data[0].lower()
-    print "howdy"
     if (userExists(data[0], c)):
-        print 'hi'
         return False
     elif not data[0].isalnum() or not data[1].isalnum():
-        print "yo"
         return False
     elif not data[1] == data[2]:
-        print "penis"
-        print data[1]
-        print data[2]
         return False
     else:
         hash = hashPass(data[1])
