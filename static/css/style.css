@@ -25,7 +25,15 @@ td{
 }
 table.messages{
     position: relative;
-    right: 90%;
+    right: 10%;
+    text-align: center;
+}
+th.messages{
+    text-align: center;  
+}
+td.messages{
+    border: 5px solid #B6CED9;
+    padding:0 25px 0 25px;
 }
 table.matches{
     position: relative;
