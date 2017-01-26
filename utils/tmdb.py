@@ -3,9 +3,9 @@ import urllib2
 import sqlite3
 import time
 
-#f = open("tmdb.txt", "r")
-#key = f.read().strip()
-#f.close()
+f = open("tmdb.txt", "r")
+key = f.read().strip()
+f.close()
 
 def read_json(url):
     return json.loads(urllib2.urlopen(url).read())
@@ -137,8 +137,10 @@ def everyone(user):
 
         c.execute("SELECT gender, pref FROM users WHERE user == '%s'"%(lol))
         N = c.fetchall()[0]
+
         
-        if lol != user and gender_match(L, M):
+        
+        if lol != user and gender_match(M, N):
             L += [ [lol, compatibility(user, lol), compatibility(lol, user)] ]
             time.sleep(1.5) # give the api a break
 
