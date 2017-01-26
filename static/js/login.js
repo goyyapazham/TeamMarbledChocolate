@@ -156,7 +156,7 @@ var loadRegister4 = function(e){
     //suggestions.remove();
     var hinput;//Hidden input fields store image preferences
     for(var i = 0; i<3; i++){
-	hinput=makeInput("hidden","i"+i, "10");
+	hinput=makeInput("hidden","i"+i, "7");
 	hinput.setAttribute("id","i"+i);
 	form.appendChild(hinput);
     }
@@ -175,7 +175,7 @@ var loadImages = function(d){
     imageTableDataTwo=document.createElement("td");
     imageTableDataThree=document.createElement("td");
     */
-    
+
     table=document.createElement("table");
     tablerow=document.createElement("tr");
     tabledata=document.createElement("td");
