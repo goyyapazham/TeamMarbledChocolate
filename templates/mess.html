@@ -27,16 +27,16 @@
     <!--Form data is stored in hidden input fields when data is removed--><br>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-    <h3 id="description">   </h3>                                                                                                                                                                              
-      Message Your Friends Below!
+    <h3 id="description">                                       Message Your Friends Below!</h3>     
 </div>
 </div>
 <!---->
 <div class="row" id="form">
     <div class="col-lg-6 col-lg-offset-3 text-center">
                 <table class="messages" id="messages">
+                    <tr><th class="messages">From:</th><th class="messages">Message</th></tr>
                     {% for message in messages %}
-                          <tr> <td>{{message[0]}}</td> <td>{{message[1]}} </td> </tr>
+                          <tr> <td class="messages">{{message[0]}}</td> <td class="messages">{{message[1]}} </td> </tr>
                     {% endfor %}
                       </table>
         

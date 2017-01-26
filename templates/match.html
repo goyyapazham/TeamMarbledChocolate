@@ -39,6 +39,10 @@
 <div class="row" id="form">
     <div class="col-lg-6 col-lg-offset-3 text-center">
       <table class="matches" id="matches">
+          <tr><th>Found!</th>
+              <th>Compatibilty!</th> 
+              <th></th>
+          </tr>
 	{% for message in matches %}
           <tr> <td>{{message[0]}}</td> <td>{{message[1]}}</td> <td><button class = "btn btn-info" value={{message[0]}} name={{user}} id="startbutton">Match!!</button></td></tr>
 	{% endfor %}
