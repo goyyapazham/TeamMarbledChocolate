@@ -78,12 +78,46 @@ def commit(user):
 
     for val in L:
 
-        c.execute("INSERT INTO comp VALUES (\"%s\", \"%s\", %f)"%(user, val[0], val[1]))
-        c.execute("INSERT INTO comp VALUES (\"%s\", \"%s\", %f)"%(val[0], user, val[2]))
-        
+        u1 = user
+        u2 = val[0]
+
+        c.execute("INSERT INTO comp VALUES ('%s', '%s', %f)"%(u1, u2, val[1]))
+        c.execute("INSERT INTO comp VALUES ('%s', '%s', %f)"%(u2, u1, val[2]))
 
     db.commit()
     db.close()
+
+def gender_match(u1, u2):
+
+    if u1 == [0, 0]:
+        if u2 == [0, 0] or u2 == [0, 2]:
+            return True
+    if u1 == [0, 1]:
+        if u2 == [1, 0] or u2 == [1, 2]:
+            return True
+    if u1 == [0, 2]:
+        if u2[1] == 0 or u2[1] == 2:
+            return True
+    if u1 == [1, 0]:
+        if u2 == [0, 1] or u2 == [0, 2]:
+            return True
+    if u1 == [1, 1]:
+        if u2 == [1, 1] or u2 == [1, 2]:
+            return True
+    if u1 == [1, 2]:
+        if u2[1] == 1 or u2[1] == 2:
+            return True
+    if u2 == [2, 0]:
+        if u2[0] == 0 and u2[1] == 2:
+            return True
+    if u2 == [2, 1]:
+        if u2[0] == 1 and u2[1] == 2:
+            return True
+    if u2 == [2, 2]:
+        if u2[1] == 2:
+            return True
+
+    return False
 
 def everyone(user):
 
@@ -95,13 +129,20 @@ def everyone(user):
     c.execute("SELECT user FROM users")
     u = c.fetchall()
 
-    db.close()
-
     for i in range(len(u)):
         lol = str(u[i][0])
-        if lol != user:
+
+        c.execute("SELECT gender, pref FROM users WHERE user == '%s'"%(user))
+        M = c.fetchall()[0]
+
+        c.execute("SELECT gender, pref FROM users WHERE user == '%s'"%(lol))
+        N = c.fetchall()[0]
+        
+        if lol != user and gender_match(L, M):
             L += [ [lol, compatibility(user, lol), compatibility(lol, user)] ]
-            time.sleep(2) # give the api a break
+            time.sleep(1.5) # give the api a break
+
+    db.close()
 
     return L
 
@@ -271,3 +312,5 @@ time.sleep(1);
 '''
 
 #print all_lovers("nala")
+
+#print everyone("nala")

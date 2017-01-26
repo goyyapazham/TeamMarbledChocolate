@@ -61,8 +61,7 @@ def intro2():
 def create():
     if isUser():
         return redirect(url_for('home'))
-    redirect(url_for('intro'))
-    data = [request.form['user'], request.form['p1'], request.form['p2'], request.form['gender'], request.form['pref'], int(request.form['movie0']), int(request.form['movie1']), int(request.form['movie2']), int(request.form['i0']), int(request.form['i1']), int(request.form['i2'])]
+    data = [request.form['user'], request.form['p1'], request.form['p2'], int(request.form['gender']), int(request.form['pref']), int(request.form['movie0']), int(request.form['movie1']), int(request.form['movie2']), int(request.form['i0']), int(request.form['i1']), int(request.form['i2'])]
     auth.profile(request.form['user'])
     if auth.register(data):
         return redirect(url_for('login'))

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Message </title>
+    <title>Message Center</title>
     <link rel="shortcut icon" href="/static/images/icon.ico" />
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -12,7 +12,7 @@
 <div class="container-fluid">
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-    <h1 class="head">Message Yo Frends </h1>
+    <h1 class="head">Message Your Matches! </h1>
     </div>
 </div>
       <br><br>
@@ -27,19 +27,21 @@
     <!--Form data is stored in hidden input fields when data is removed--><br>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-    <h3 id="description">                                                                                                                                                                                
-      Message yo frends!
-    </div>
+    <h3 id="description">                                       Message Your Friends Below!</h3>     
+</div>
 </div>
 <!---->
-<div class="row">
+<div class="row" id="form">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-      <table class="messages" id="messages">
-	{% for message in messages %}
-	<tr> <td>{{message[0]}}</td> <td>{{message[1]}} </td> </tr> </li>
-	{% endfor %}
-      </table>
-      <form action = "/sendMess/" method="POST">
+                <table class="messages" id="messages">
+                    <tr><th class="messages">From:</th><th class="messages">Message</th></tr>
+                    {% for message in messages %}
+                          <tr> <td class="messages">{{message[0]}}</td> <td class="messages">{{message[1]}} </td> </tr>
+                    {% endfor %}
+                      </table>
+        
+    <br>
+    <form action = "/sendMess/" method="POST">
 	<input type = "text" name="text">
 	<input type = "hidden" name="user" value={{user}}>
 	<input type = "hidden" name="recip" value={{recip}}>
@@ -47,6 +49,7 @@
       </form>
     </div>
 </div>
+      </div>
 <!---->
 <script src="../../static/js/jquery-3.1.1.min.js"></script>
 <script src="../../static/js/mess.js"></script>
