@@ -37,6 +37,25 @@ var makeInput = function(type, name, text){
     return ret;
 };
 
+var makeSelect = function(name){
+    var ret = document.createElement("select");
+    ret.setAttribute("name", name);
+    ret.setAttribute("class","field");
+    opt = document.createElement("option");
+    opt.setAttribute("value","Male");
+    opt.innerHTML="MALE"
+    ret.appendChild(opt)
+    opt = document.createElement("option");
+    opt.setAttribute("value","Female");
+    opt.innerHTML="FEMALE"
+    ret.appendChild(opt)
+    opt = document.createElement("option");
+    opt.setAttribute("value","Other");
+    opt.innerHTML="OTHER"
+    ret.appendChild(opt)
+    return ret;
+};
+
 var makeInputImage = function(name){
     var ret = document.createElement("input");
     ret.setAttribute("type", "file");
@@ -65,17 +84,36 @@ var loadRegister1 = function(e){
 //and security question
 var loadRegister2 = function(e){
     makeHidden();
-    setDescription("Enter your gender identity, and the gender(s) you're interested in being matched with. Next answer the security question for retrieving you password: Who do you secretly have a crush on?");
-    //YO IF U DO FRONTEND CHECK THIS OUT
-    //HI ELY
-    //CAN U MAKE THIS A DROPDOWN (i.e., male, female, other: please specify) so that matching users up is easier?
-    //OK I'LL TRY
-    form.appendChild(makeInput("text","gender","Your gender"));
-    form.appendChild(makeInput("text","pref","Gender(s) you're looking for"));
+    setDescription("Enter your gender identity, and the gender(s) you're interested in being matched with");
+    form.appendChild(makeSelect("gender"));
+    form.appendChild(makeSelect("pref"));
 };
 
+//convertSelect stores the values of the dropdown menus
+var convertSelect = function(e){
+    var options = document.getElementsByTagName("option");
+    var value;
+    var selectField;
+    while(options.length>0){
+	if(options[0].selected){
+	    value=options[0].getAttribute("value");
+	    selectField=options[0].parentNode;
+	    if(selectField.getAttribute("name")=="gender"){
+		form.appendChild(makeInput("hidden","gender",value));
+	    }else{
+		form.appendChild(makeInput("hidden","pref",value));
+	    }
+	}
+	options[0].remove();
+    }
+    options = document.getElementsByTagName("select");
+    while(options.length>0){
+	options[0].remove();
+    }
+}
 //loadRegister3 loads input for your favorite movie, and adds autocomplete
 var loadRegister3 = function(e){
+    convertSelect();
     makeHidden();
     setDescription("Enter your three favorite movies. Suggestions will appear below as you type");
     var m;
