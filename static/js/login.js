@@ -152,8 +152,8 @@ var loadRegister3 = function(e){
 //loadRegister4 loads images of air conditioners for you to choose
 var loadRegister4 = function(e){
     makeHidden();
-    //var suggestions = document.getElementsById("suggestions");
-    //suggestions.remove();
+    var suggestions = document.getElementById("suggestions");
+    suggestions.remove();
     setDescription("Click on three air conditioners to store your preferences");
     var hinput;//Hidden input fields store image preferences
     for(var i = 0; i<3; i++){

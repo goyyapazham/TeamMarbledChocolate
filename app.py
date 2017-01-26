@@ -50,12 +50,12 @@ def intro():
     i0 = request.form['i0']
     i1 = request.form['i1']
     i2 = request.form['i2']
-    return render_template('intro.html', user = user, p1 = p1, gender = gender, pref = pref, movie0 = movie0, movie1 = movie1, movie2 = movie2, i0=i0, i1=i1, i2=i2, create =1)
+    return render_template('intro.html', user = user, p1 = p1, p2 = p2, gender = gender, pref = pref, movie0 = movie0, movie1 = movie1, movie2 = movie2, i0=i0, i1=i1, i2=i2, create =1)
 
 #Standard intro
 @app.route('/intro2/', methods = ['POST'])
 def intro2():
-    return render_template('intro.html', user = "", p1 = "", gender = "", pref = "", movie0 = "", movie1 = "", movie2 = "", i0="", i1="", i2="", create = 0)
+    return render_template('intro.html', user = "", p1 = "", p2 = "", gender = "", pref = "", movie0 = "", movie1 = "", movie2 = "", i0="", i1="", i2="", create = 0)
 
 @app.route('/create/', methods = ['POST'])
 def create():
