@@ -15,6 +15,16 @@ img{
     border:  solid transparent; 
 }
 
+td{
+    border: 15px solid transparent;
+        padding:0 25px 0 25px;
+
+}
+table.messages{
+    position: relative;
+    right: 90%;
+    border: 3px solid green;
+}
 h1{   
   text-align: center;
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
