@@ -138,6 +138,29 @@ Dhiraj Patel -- 1/25 - 1/26 22:30 to 01:30AM
 - fixed up some of the html tables that Ely had created.
 - Tried to make everything look as nice as possible considering backend people were still working on finishing their part.
 
+Ely Sandine -- 1/25 - 1/26 11:00 to 02:15 - minus meals and 45min subway commute
+- Fixed loadImages for register
+- Add home.html
+- Made home.html display new messages
+- Switched air conditioner page to have default values
+- Added message buttons to home.html
+- added logout button, add home.js
+- added match.html, and routing from home.html
+- added mess.html (messaging) and routing
+- add to home.js to accomodate messaging, mage messaging use get requests to solve problem
+- core functionality achieved
+- took out bio and profile picture options due to time constraints
+- changed gender preferences to use dropdown menus to help matching
+- add home button to pages
+- successfully staged coup to become de facto project manager
+- incorporated intro.html to display during wait time
+- core functionality actually complete
+- fixed issue with match buttons not matching
+- add match.js
+- fixed error of suggestions not disappearing
+- fixed error of click on images not registering data
+- fixed error of register not registering
+
 Jonathan Buhler -- 11:00 AM to 4:14 AM
 - Added various messaging functions
 - Fixed up data structure
