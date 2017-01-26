@@ -36,10 +36,32 @@ def authenticate():
     else:
         return redirect(url_for('login'))
 
+#This intro loads before loading create
+@app.route('/intro/', methods = ['POST'])
+def intro():
+    user = request.form['user']
+    p1 = request.form['p1']
+    p2 = request.form['p2']
+    gender = request.form['gender']
+    pref = request.form['pref']
+    movie0 = request.form['movie0']
+    movie1 = request.form['movie1']
+    movie2 = request.form['movie2']
+    i0 = request.form['i0']
+    i1 = request.form['i1']
+    i2 = request.form['i2']
+    return render_template('intro.html', user = user, p1 = p1, gender = gender, pref = pref, movie0 = movie0, movie1 = movie1, movie2 = movie2, i0=i0, i1=i1, i2=i2, create =1)
+
+#Standard intro
+@app.route('/intro2/', methods = ['POST'])
+def intro2():
+    return render_template('intro.html', user = "", p1 = "", gender = "", pref = "", movie0 = "", movie1 = "", movie2 = "", i0="", i1="", i2="", create = 0)
+
 @app.route('/create/', methods = ['POST'])
 def create():
     if isUser():
         return redirect(url_for('home'))
+    redirect(url_for('intro'))
     data = [request.form['user'], request.form['p1'], request.form['p2'], request.form['gender'], request.form['pref'], int(request.form['movie0']), int(request.form['movie1']), int(request.form['movie2']), int(request.form['i0']), int(request.form['i1']), int(request.form['i2'])]
     auth.profile(request.form['user'])
     if auth.register(data):

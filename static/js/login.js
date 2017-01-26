@@ -133,7 +133,7 @@ var loadRegister3 = function(e){
 //loadRegister4 loads images of air conditioners for you to choose
 var loadRegister4 = function(e){
     makeHidden();
-    var suggestions = document.getElementsByTagName("div")[0];
+    //var suggestions = document.getElementsById("suggestions");
     //suggestions.remove();
     var hinput;//Hidden input fields store image preferences
     for(var i = 0; i<3; i++){
@@ -235,7 +235,7 @@ var loginButton = function(e){
 var regButton = function(e){
     resetForm();
     button.setAttribute("type","button");
-    form.setAttribute("action","/create/");
+    form.setAttribute("action","/intro/");
     state="reg1"
     loadRegister1();
 };

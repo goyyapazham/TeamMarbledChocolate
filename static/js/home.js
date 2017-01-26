@@ -4,6 +4,14 @@ var home = function(d){
     f.submit();
 };
 
+var intro = function(d){
+    var f = document.createElement("form");
+    f.setAttribute("action","/intro2/");
+    f.setAttribute("method","POST");
+    f.submit();
+};
+
+
 var logout = function(d){
     var f = document.createElement("form");
     f.setAttribute("action","/logout/");
@@ -51,6 +59,7 @@ var assignMatchButtons = function(e){
 
 //document.getElementById("homebutton").addEventListener("click",home);
 document.getElementById("logoutbutton").addEventListener("click",logout);
+document.getElementById("introbutton").addEventListener("click",intro);
 document.getElementById("matchbutton").addEventListener("click",function(){match(this.getAttribute("value"));});
 //document.getElementById("startbutton").addEventListener("click",function(){startChat(this.getAttribute("name"),this.getAttribute("value"));});
 assignMatchButtons();
