@@ -37,21 +37,40 @@ var makeInput = function(type, name, text){
     return ret;
 };
 
-var makeSelect = function(name){
+var makeGender = function(name){
     var ret = document.createElement("select");
     ret.setAttribute("name", name);
     ret.setAttribute("class","field");
     opt = document.createElement("option");
-    opt.setAttribute("value","Male");
+    opt.setAttribute("value","0");
     opt.innerHTML="MALE"
     ret.appendChild(opt)
     opt = document.createElement("option");
-    opt.setAttribute("value","Female");
+    opt.setAttribute("value","1");
     opt.innerHTML="FEMALE"
     ret.appendChild(opt)
     opt = document.createElement("option");
-    opt.setAttribute("value","Other");
+    opt.setAttribute("value","2");
     opt.innerHTML="OTHER"
+    ret.appendChild(opt)
+    return ret;
+};
+
+var makePreference = function(name){
+    var ret = document.createElement("select");
+    ret.setAttribute("name", name);
+    ret.setAttribute("class","field");
+    opt = document.createElement("option");
+    opt.setAttribute("value","0");
+    opt.innerHTML="MALE"
+    ret.appendChild(opt)
+    opt = document.createElement("option");
+    opt.setAttribute("value","1");
+    opt.innerHTML="FEMALE"
+    ret.appendChild(opt)
+    opt = document.createElement("option");
+    opt.setAttribute("value","2");
+    opt.innerHTML="ANY"
     ret.appendChild(opt)
     return ret;
 };
@@ -85,8 +104,8 @@ var loadRegister1 = function(e){
 var loadRegister2 = function(e){
     makeHidden();
     setDescription("Enter your gender identity, and the gender(s) you're interested in being matched with");
-    form.appendChild(makeSelect("gender"));
-    form.appendChild(makeSelect("pref"));
+    form.appendChild(makeGender("gender"));
+    form.appendChild(makePreference("pref"));
 };
 
 //convertSelect stores the values of the dropdown menus
