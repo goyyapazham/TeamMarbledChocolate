@@ -8,6 +8,8 @@ def hashPass(password):
     return hashlib.sha512(password).hexdigest()
 
 def register(data):
+    bd = sqlite3.connect('data/bd.db')
+    c = bd.cursor()
     data[0] = data[0].lower()
     if (userExists(data[0], c)):
         return False
@@ -16,8 +18,6 @@ def register(data):
     elif not data[1] == data[2]:
         return False
     else:
-        bd = sqlite3.connect('data/bd.db')
-        c = bd.cursor()
         hash = hashPass(data[2])
         #0=user
         #1,2=pw
@@ -28,9 +28,9 @@ def register(data):
         mov = [ data[5], data[6], data[7] ]
         img = [ data[8], data[9], data[10] ]
         c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%d')"%(data[0], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], tmdb.comp_mov(mov, mov) + tmdb.comp_img(img, img)))
-        bd.commit()
-        bd.close()
         tmdb.commit(data[0])
+    bd.commit()
+    bd.close()
 
 def login(data):
     bd = sqlite3.connect('data/bd.db')
