@@ -111,10 +111,6 @@ Jonathan Buhler -- 1/24 10:30 to 11:23
 - Added access functions to messages.py
 - Fixed many bugs said access functions revealed
 
-Dhiraj Patel -- 1/25 12:30 to 14:30
-- CSS'ed the images that ely had uploaded to the login page at the end for the user to pick their favorite AC from.
-- Used HTML tables to place the 9 images into a 3x3 grid for a better user interface.
-- added cursor pointer to the images. 
 
 Nala Sharadjaya -- 1/24 1:30ish to 2:04
 - Update matching
@@ -131,3 +127,13 @@ Nala Sharadjaya -- 12:00ish to 12:49, 3:00ish to 3:52
 
 Nala Sharadjaya -- 4:30ish to 4:57
 - Meet the coders
+
+Dhiraj Patel -- 1/25 12:30 to 14:30
+- CSS'ed the images that ely had uploaded to the login page at the end for the user to pick their favorite AC from.
+- Used HTML tables to place the 9 images into a 3x3 grid for a better user interface.
+- added cursor pointer to the images. 
+
+Dhiraj Patel -- 1/25 - 1/26 22:30 to 01:30AM
+- finished / implemented our applications CSS design to all the html pages.
+- fixed up some of the hmtml tables that Ely had created.
+- Tried to make everything look as nice as possible considering backend people were still working on finishing their part.
