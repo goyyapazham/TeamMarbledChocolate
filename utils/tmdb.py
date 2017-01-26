@@ -3,9 +3,9 @@ import urllib2
 import sqlite3
 import time
 
-f = open("tmdb.txt", "r")
-key = f.read().strip()
-f.close()
+#f = open("tmdb.txt", "r")
+#key = f.read().strip()
+#f.close()
 
 def read_json(url):
     return json.loads(urllib2.urlopen(url).read())
@@ -89,31 +89,31 @@ def commit(user):
 
 def gender_match(u1, u2):
 
-    if u1 == [0, 0]:
-        if u2 == [0, 0] or u2 == [0, 2]:
+    if u1 == (0, 0):
+        if u2 == (0, 0) or u2 == (0, 2):
             return True
-    if u1 == [0, 1]:
-        if u2 == [1, 0] or u2 == [1, 2]:
+    if u1 == (0, 1):
+        if u2 == (1, 0) or u2 == (1, 2):
             return True
-    if u1 == [0, 2]:
+    if u1 == (0, 2):
         if u2[1] == 0 or u2[1] == 2:
             return True
-    if u1 == [1, 0]:
-        if u2 == [0, 1] or u2 == [0, 2]:
+    if u1 == (1, 0):
+        if u2 == (0, 1) or u2 == (0, 2):
             return True
-    if u1 == [1, 1]:
-        if u2 == [1, 1] or u2 == [1, 2]:
+    if u1 == (1, 1):
+        if u2 == (1, 1) or u2 == (1, 2):
             return True
-    if u1 == [1, 2]:
+    if u1 == (1, 2):
         if u2[1] == 1 or u2[1] == 2:
             return True
-    if u2 == [2, 0]:
+    if u2 == (2, 0):
         if u2[0] == 0 and u2[1] == 2:
             return True
-    if u2 == [2, 1]:
+    if u2 == (2, 1):
         if u2[0] == 1 and u2[1] == 2:
             return True
-    if u2 == [2, 2]:
+    if u2 == (2, 2):
         if u2[1] == 2:
             return True
 
@@ -314,3 +314,10 @@ time.sleep(1);
 #print all_lovers("nala")
 
 #print everyone("nala")
+
+'''
+print gender_match( (0, 2), (1, 0) )
+print gender_match( (0, 2), (0, 0) )
+print gender_match( (0, 2), (1, 1) )
+print gender_match( (1, 1), (1, 1) )
+'''
