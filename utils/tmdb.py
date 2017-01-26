@@ -256,8 +256,6 @@ print all_lovers("disneyfan123")
 '''
 
 '''
-all_lovers("lol")
-
 print compatibility("lol", "nala")
 time.sleep(1);
 print compatibility("lol", "twat")

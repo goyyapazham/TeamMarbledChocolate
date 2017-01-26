@@ -13,27 +13,24 @@ def register(data):
     data[0] = data[0].lower()
     if (userExists(data[0], c)):
         return False
-    elif not data[0].isalnum() or not data[2].isalnum():
+    elif not data[0].isalnum() or not data[1].isalnum():
         return False
-    elif not data[2] == data[3]:
+    elif not data[1] == data[2]:
         return False
     else:
-        hash = hashPass(data[2])
+        hash = hashPass(data[1])
         #0=user
-        #1=email
-        #2,3=pw
-        #4=gender
-        #5=pref
-        #6=security
-        #7,8,9=movs
-        #10,11,12=images (will implement later)
-        #13=bio
-        mov = [ int(data[7]), int(data[8]), int(data[9]) ]
-        img = [ int(data[10]), int(data[11]), int(data[12]) ]
-        c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d','%d', '%d', '%d')"%(data[0], data[1], hash, data[4], int(data[5]), int(data[6]), int(data[7]), int(data[8]), int(data[9]), int(data[10]), int(data[11]), int(data[12]), tmdb.comp_mov(mov, mov) + tmdb.comp_img(img, img))) #WILL INCLUDE OTHER THINGS LATER
+        #1,2=pw
+        #3=gender
+        #4=pref
+        #5,6,7=movs
+        #8,9,10=images
+        mov = [ data[5], data[6], data[7] ]
+        img = [ data[8], data[9], data[10] ]
+        c.execute("INSERT INTO users VALUES('%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%d')"%(data[0], hash, data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], tmdb.comp_mov(mov, mov) + tmdb.comp_img(img, img)))
+        bd.commit()
+        bd.close()
         tmdb.commit(data[0])
-    bd.commit()
-    bd.close()
 
 def login(data):
     bd = sqlite3.connect('data/bd.db')
@@ -52,7 +49,6 @@ def login(data):
             result = [True, data[0]]
     bd.commit()
     bd.close()
-    #shutil.move('%s.jpg', 'data') %(data[0])
     return result
 
 def userExists(username, c):
